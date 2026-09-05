@@ -22,6 +22,15 @@ See suite contract patterns from [shared-buddy](https://github.com/rodrigofranzo
 
 Watch email inbox for OTPs and copy them to the clipboard via the menu bar.
 
+
+## Design system & atomic components
+
+Apps **must** use the shared Buddy design system (tokens + atomic components) from `shared-buddy` / `BuddyUI`.
+
+- Do not invent one-off colors, radii, or spacing in this app.
+- Compose screens from atoms/molecules; upstream new UI to `BuddyUI`.
+- Full contract: [DESIGN_SYSTEM.md](DESIGN_SYSTEM.md) (source of truth also in shared-buddy).
+
 ## Related docs
 
 - [FEATURES.md](FEATURES.md)
