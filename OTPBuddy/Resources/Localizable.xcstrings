@@ -1,0 +1,48 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "IMAP account" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "IMAP account" } },
+        "nl" : { "stringUnit" : { "state" : "translated", "value" : "IMAP-account" } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Conta IMAP" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Cuenta IMAP" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Compte IMAP" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Account IMAP" } },
+        "ar" : { "stringUnit" : { "state" : "translated", "value" : "حساب IMAP" } },
+        "zh" : { "stringUnit" : { "state" : "translated", "value" : "IMAP 账户" } },
+        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Учётная запись IMAP" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "IMAPアカウント" } }
+      }
+    },
+    "Copy to Clipboard" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Copy to Clipboard" } },
+        "nl" : { "stringUnit" : { "state" : "translated", "value" : "Kopiëren naar klembord" } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Copiar para a área de transferência" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Copiar al portapapeles" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Copier dans le presse-papiers" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Copia negli appunti" } },
+        "ar" : { "stringUnit" : { "state" : "translated", "value" : "نسخ إلى الحافظة" } },
+        "zh" : { "stringUnit" : { "state" : "translated", "value" : "复制到剪贴板" } },
+        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Копировать в буфер" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "クリップボードにコピー" } }
+      }
+    },
+    "Connect" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Connect" } },
+        "nl" : { "stringUnit" : { "state" : "translated", "value" : "Verbinden" } },
+        "pt" : { "stringUnit" : { "state" : "translated", "value" : "Conectar" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Conectar" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Connecter" } },
+        "it" : { "stringUnit" : { "state" : "translated", "value" : "Connetti" } },
+        "ar" : { "stringUnit" : { "state" : "translated", "value" : "اتصال" } },
+        "zh" : { "stringUnit" : { "state" : "translated", "value" : "连接" } },
+        "ru" : { "stringUnit" : { "state" : "translated", "value" : "Подключить" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "接続" } }
+      }
+    }
+  },
+  "version" : "1.0"
+}

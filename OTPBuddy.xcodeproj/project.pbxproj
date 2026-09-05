@@ -1,0 +1,613 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3EE43AB5A745EB3B6B5C92C5 /* OTPBuddyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF0276830410E819025711E /* OTPBuddyApp.swift */; };
+		43659CF148966892793ADEFD /* BuddyTesting in Frameworks */ = {isa = PBXBuildFile; productRef = 479955BA71D1565536FE5DB3 /* BuddyTesting */; };
+		52FFB9545D6C91D0FFA1FDDD /* SettingsDashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F4EA5B544B38A6A806C221 /* SettingsDashboard.swift */; };
+		5857BB590851131426970BDD /* BuddyFirebase in Frameworks */ = {isa = PBXBuildFile; productRef = E770B3698E19D4833F6B0E30 /* BuddyFirebase */; };
+		58D6D2D69CDA9FA62C707B55 /* IMAPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D9694EADE27D1E61CAE8EC /* IMAPClient.swift */; };
+		77BE4FC828E730597420D0B6 /* BuddyCore in Frameworks */ = {isa = PBXBuildFile; productRef = 26E966BB073F259B3A7DEEA4 /* BuddyCore */; };
+		781E420F146C06D0A7687DE8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 890186F856052CF0ECDD3FFE /* AppDelegate.swift */; };
+		78795932DDC5B710D15F4BF8 /* BuddyCore in Frameworks */ = {isa = PBXBuildFile; productRef = 21521BEE9C4519A2510695E2 /* BuddyCore */; };
+		78AE4E579F080B9B4A9B8358 /* OTPStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76614D9C6AF3856ABE1F2397 /* OTPStoreTests.swift */; };
+		8992F6515D8D711B2D2476D8 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = BF0BE6D4F4F9ABC817935068 /* Localizable.xcstrings */; };
+		C779E26F24DFAC11854E4598 /* OTPStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FC1AB0A9FBECAD377F9D2A /* OTPStore.swift */; };
+		E6AB78E6E4EBCEA9D0E0C94C /* BuddyLocalization in Frameworks */ = {isa = PBXBuildFile; productRef = 3038361F19795ECE81D92E22 /* BuddyLocalization */; };
+		ECAF63467D69133391724EED /* OTPBuddyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC4114BFB502D17FBDEC433 /* OTPBuddyUITests.swift */; };
+		FA844260B4ADA1EDD93857A2 /* BuddyUI in Frameworks */ = {isa = PBXBuildFile; productRef = FF2CF9BDB7FB449CCF4E2B6B /* BuddyUI */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D7843BF226006E269ABB6E03 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2ED72DF6C3074111BE796C2A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4201B482F1CA33436EB51319;
+			remoteInfo = OTPBuddy;
+		};
+		FF66031AD3762CBCD2A8BF14 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2ED72DF6C3074111BE796C2A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4201B482F1CA33436EB51319;
+			remoteInfo = OTPBuddy;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		2BF0276830410E819025711E /* OTPBuddyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPBuddyApp.swift; sourceTree = "<group>"; };
+		482DBC44CEE1B14C9534D316 /* shared-buddy */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "shared-buddy"; path = "Vendor/shared-buddy"; sourceTree = SOURCE_ROOT; };
+		56B3E898EEA6D4CAB35A969D /* OTPBuddy.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OTPBuddy.entitlements; sourceTree = "<group>"; };
+		74FA1B966F4092B9EF4094F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		76614D9C6AF3856ABE1F2397 /* OTPStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPStoreTests.swift; sourceTree = "<group>"; };
+		80522772AA1522C6D88F69B2 /* OTPBuddyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OTPBuddyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		890186F856052CF0ECDD3FFE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		8DC4114BFB502D17FBDEC433 /* OTPBuddyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPBuddyUITests.swift; sourceTree = "<group>"; };
+		98F0D2C95C5E1027DB4283EE /* OTPBuddy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OTPBuddy.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A5D9694EADE27D1E61CAE8EC /* IMAPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IMAPClient.swift; sourceTree = "<group>"; };
+		B7FC1AB0A9FBECAD377F9D2A /* OTPStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPStore.swift; sourceTree = "<group>"; };
+		BF0BE6D4F4F9ABC817935068 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		CE06521C9627E93FD1A61061 /* OTPBuddyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OTPBuddyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D6F4EA5B544B38A6A806C221 /* SettingsDashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsDashboard.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		10CD68FA815F911490BFF2F8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				78795932DDC5B710D15F4BF8 /* BuddyCore in Frameworks */,
+				FA844260B4ADA1EDD93857A2 /* BuddyUI in Frameworks */,
+				5857BB590851131426970BDD /* BuddyFirebase in Frameworks */,
+				E6AB78E6E4EBCEA9D0E0C94C /* BuddyLocalization in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		641829C63DD6CE7567C2C15B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				77BE4FC828E730597420D0B6 /* BuddyCore in Frameworks */,
+				43659CF148966892793ADEFD /* BuddyTesting in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3CCB3EC0BDFAEB1C15B7EF8B /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				BF0BE6D4F4F9ABC817935068 /* Localizable.xcstrings */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		509694936017063484D50C3F /* OTPBuddyUITests */ = {
+			isa = PBXGroup;
+			children = (
+				8DC4114BFB502D17FBDEC433 /* OTPBuddyUITests.swift */,
+			);
+			path = OTPBuddyUITests;
+			sourceTree = "<group>";
+		};
+		5D0C043810A32BC226C36952 /* OTPBuddy */ = {
+			isa = PBXGroup;
+			children = (
+				890186F856052CF0ECDD3FFE /* AppDelegate.swift */,
+				A5D9694EADE27D1E61CAE8EC /* IMAPClient.swift */,
+				74FA1B966F4092B9EF4094F6 /* Info.plist */,
+				56B3E898EEA6D4CAB35A969D /* OTPBuddy.entitlements */,
+				2BF0276830410E819025711E /* OTPBuddyApp.swift */,
+				B7FC1AB0A9FBECAD377F9D2A /* OTPStore.swift */,
+				D6F4EA5B544B38A6A806C221 /* SettingsDashboard.swift */,
+				3CCB3EC0BDFAEB1C15B7EF8B /* Resources */,
+			);
+			path = OTPBuddy;
+			sourceTree = "<group>";
+		};
+		6A3F0B725865DE19AA82F378 /* OTPBuddyTests */ = {
+			isa = PBXGroup;
+			children = (
+				76614D9C6AF3856ABE1F2397 /* OTPStoreTests.swift */,
+			);
+			path = OTPBuddyTests;
+			sourceTree = "<group>";
+		};
+		7C4198010762353EFF98925C /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				482DBC44CEE1B14C9534D316 /* shared-buddy */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
+		F34EB114661A2ABCE4A3E561 = {
+			isa = PBXGroup;
+			children = (
+				5D0C043810A32BC226C36952 /* OTPBuddy */,
+				6A3F0B725865DE19AA82F378 /* OTPBuddyTests */,
+				509694936017063484D50C3F /* OTPBuddyUITests */,
+				7C4198010762353EFF98925C /* Packages */,
+				FF0BCAD4B5EC6D45486D7FC0 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		FF0BCAD4B5EC6D45486D7FC0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				98F0D2C95C5E1027DB4283EE /* OTPBuddy.app */,
+				CE06521C9627E93FD1A61061 /* OTPBuddyTests.xctest */,
+				80522772AA1522C6D88F69B2 /* OTPBuddyUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4201B482F1CA33436EB51319 /* OTPBuddy */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5B6F51EA90D6FC094DBD9CF2 /* Build configuration list for PBXNativeTarget "OTPBuddy" */;
+			buildPhases = (
+				91A2A296CA06D281B4BA5481 /* Sources */,
+				2671878F5EDFBE1D9A336AC9 /* Resources */,
+				10CD68FA815F911490BFF2F8 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = OTPBuddy;
+			packageProductDependencies = (
+				21521BEE9C4519A2510695E2 /* BuddyCore */,
+				FF2CF9BDB7FB449CCF4E2B6B /* BuddyUI */,
+				E770B3698E19D4833F6B0E30 /* BuddyFirebase */,
+				3038361F19795ECE81D92E22 /* BuddyLocalization */,
+			);
+			productName = OTPBuddy;
+			productReference = 98F0D2C95C5E1027DB4283EE /* OTPBuddy.app */;
+			productType = "com.apple.product-type.application";
+		};
+		7BDEAC91232CBF88937B1678 /* OTPBuddyUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DC239804B453819BAD0F61EA /* Build configuration list for PBXNativeTarget "OTPBuddyUITests" */;
+			buildPhases = (
+				2F849C6440DDA8643093526A /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6C3D08EADC106D3668566CCF /* PBXTargetDependency */,
+			);
+			name = OTPBuddyUITests;
+			packageProductDependencies = (
+			);
+			productName = OTPBuddyUITests;
+			productReference = 80522772AA1522C6D88F69B2 /* OTPBuddyUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		B3BFC34E3524D625197635D5 /* OTPBuddyTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 999DADC87D668B58BBBAC5FB /* Build configuration list for PBXNativeTarget "OTPBuddyTests" */;
+			buildPhases = (
+				4395F767EADD3AB1E4F67758 /* Sources */,
+				641829C63DD6CE7567C2C15B /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1935A089DA50D4F24A629F58 /* PBXTargetDependency */,
+			);
+			name = OTPBuddyTests;
+			packageProductDependencies = (
+				26E966BB073F259B3A7DEEA4 /* BuddyCore */,
+				479955BA71D1565536FE5DB3 /* BuddyTesting */,
+			);
+			productName = OTPBuddyTests;
+			productReference = CE06521C9627E93FD1A61061 /* OTPBuddyTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2ED72DF6C3074111BE796C2A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					7BDEAC91232CBF88937B1678 = {
+						TestTargetID = 4201B482F1CA33436EB51319;
+					};
+				};
+			};
+			buildConfigurationList = C726CBD8B80878CAE7E7365F /* Build configuration list for PBXProject "OTPBuddy" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				ar,
+				en,
+				es,
+				fr,
+				it,
+				ja,
+				nl,
+				pt,
+				ru,
+				zh,
+			);
+			mainGroup = F34EB114661A2ABCE4A3E561;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				44763BF8604AB4C0FB504353 /* XCLocalSwiftPackageReference "Vendor/shared-buddy" */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = FF0BCAD4B5EC6D45486D7FC0 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4201B482F1CA33436EB51319 /* OTPBuddy */,
+				B3BFC34E3524D625197635D5 /* OTPBuddyTests */,
+				7BDEAC91232CBF88937B1678 /* OTPBuddyUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2671878F5EDFBE1D9A336AC9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8992F6515D8D711B2D2476D8 /* Localizable.xcstrings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2F849C6440DDA8643093526A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ECAF63467D69133391724EED /* OTPBuddyUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4395F767EADD3AB1E4F67758 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				78AE4E579F080B9B4A9B8358 /* OTPStoreTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		91A2A296CA06D281B4BA5481 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				781E420F146C06D0A7687DE8 /* AppDelegate.swift in Sources */,
+				58D6D2D69CDA9FA62C707B55 /* IMAPClient.swift in Sources */,
+				3EE43AB5A745EB3B6B5C92C5 /* OTPBuddyApp.swift in Sources */,
+				C779E26F24DFAC11854E4598 /* OTPStore.swift in Sources */,
+				52FFB9545D6C91D0FFA1FDDD /* SettingsDashboard.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		1935A089DA50D4F24A629F58 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4201B482F1CA33436EB51319 /* OTPBuddy */;
+			targetProxy = D7843BF226006E269ABB6E03 /* PBXContainerItemProxy */;
+		};
+		6C3D08EADC106D3668566CCF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4201B482F1CA33436EB51319 /* OTPBuddy */;
+			targetProxy = FF66031AD3762CBCD2A8BF14 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		07B1CF4255D9B52F1B974093 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = OTPBuddy/OTPBuddy.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_TESTABILITY = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = OTPBuddy/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.buddy.otp;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		0A283EF4F4E02014F25281F0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.buddy.OTPBuddyTests;
+				SDKROOT = macosx;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OTPBuddy.app/Contents/MacOS/OTPBuddy";
+			};
+			name = Release;
+		};
+		5C20CAB3DF9E1C47728780D6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.buddy.OTPBuddyUITests;
+				SDKROOT = macosx;
+				TEST_TARGET_NAME = OTPBuddy;
+			};
+			name = Debug;
+		};
+		8919BCA8836866C95EF29F7D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = OTPBuddy/OTPBuddy.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_TESTABILITY = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = OTPBuddy/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.buddy.otp;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		8D26E35EEDBE2D9112B1CE59 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.9;
+			};
+			name = Debug;
+		};
+		B684F588DC5A74457F41B6A2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.buddy.OTPBuddyUITests;
+				SDKROOT = macosx;
+				TEST_TARGET_NAME = OTPBuddy;
+			};
+			name = Release;
+		};
+		BF263B19DA16EECA42DA4CCC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.buddy.OTPBuddyTests;
+				SDKROOT = macosx;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OTPBuddy.app/Contents/MacOS/OTPBuddy";
+			};
+			name = Debug;
+		};
+		DBE373EF928F42158293C4FE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.9;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		5B6F51EA90D6FC094DBD9CF2 /* Build configuration list for PBXNativeTarget "OTPBuddy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				07B1CF4255D9B52F1B974093 /* Debug */,
+				8919BCA8836866C95EF29F7D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		999DADC87D668B58BBBAC5FB /* Build configuration list for PBXNativeTarget "OTPBuddyTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BF263B19DA16EECA42DA4CCC /* Debug */,
+				0A283EF4F4E02014F25281F0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		C726CBD8B80878CAE7E7365F /* Build configuration list for PBXProject "OTPBuddy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8D26E35EEDBE2D9112B1CE59 /* Debug */,
+				DBE373EF928F42158293C4FE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		DC239804B453819BAD0F61EA /* Build configuration list for PBXNativeTarget "OTPBuddyUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5C20CAB3DF9E1C47728780D6 /* Debug */,
+				B684F588DC5A74457F41B6A2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		44763BF8604AB4C0FB504353 /* XCLocalSwiftPackageReference "Vendor/shared-buddy" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = "Vendor/shared-buddy";
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		21521BEE9C4519A2510695E2 /* BuddyCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = BuddyCore;
+		};
+		26E966BB073F259B3A7DEEA4 /* BuddyCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = BuddyCore;
+		};
+		3038361F19795ECE81D92E22 /* BuddyLocalization */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = BuddyLocalization;
+		};
+		479955BA71D1565536FE5DB3 /* BuddyTesting */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = BuddyTesting;
+		};
+		E770B3698E19D4833F6B0E30 /* BuddyFirebase */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = BuddyFirebase;
+		};
+		FF2CF9BDB7FB449CCF4E2B6B /* BuddyUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = BuddyUI;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 2ED72DF6C3074111BE796C2A /* Project object */;
+}

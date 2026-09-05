@@ -1,0 +1,60 @@
+name: OTPBuddy
+options:
+  bundleIdPrefix: com.buddy
+  deploymentTarget:
+    macOS: "13.0"
+  createIntermediateGroups: true
+settings:
+  SWIFT_VERSION: "5.9"
+  MACOSX_DEPLOYMENT_TARGET: "13.0"
+packages:
+  shared-buddy:
+    path: Vendor/shared-buddy
+targets:
+  OTPBuddy:
+    type: application
+    platform: macOS
+    sources:
+      - OTPBuddy
+    dependencies:
+      - package: shared-buddy
+        product: BuddyCore
+      - package: shared-buddy
+        product: BuddyUI
+      - package: shared-buddy
+        product: BuddyFirebase
+      - package: shared-buddy
+        product: BuddyLocalization
+    settings:
+      PRODUCT_BUNDLE_IDENTIFIER: com.buddy.otp
+      INFOPLIST_FILE: OTPBuddy/Info.plist
+      GENERATE_INFOPLIST_FILE: false
+      CODE_SIGN_ENTITLEMENTS: OTPBuddy/OTPBuddy.entitlements
+      LD_RUNPATH_SEARCH_PATHS: "@executable_path/../Frameworks"
+      ENABLE_TESTABILITY: true
+    scheme:
+      testTargets:
+        - OTPBuddyTests
+        - OTPBuddyUITests
+  OTPBuddyTests:
+    type: bundle.unit-test
+    platform: macOS
+    sources:
+      - OTPBuddyTests
+    dependencies:
+      - target: OTPBuddy
+      - package: shared-buddy
+        product: BuddyCore
+      - package: shared-buddy
+        product: BuddyTesting
+    settings:
+      GENERATE_INFOPLIST_FILE: true
+  OTPBuddyUITests:
+    type: bundle.ui-testing
+    platform: macOS
+    sources:
+      - OTPBuddyUITests
+    dependencies:
+      - target: OTPBuddy
+    settings:
+      GENERATE_INFOPLIST_FILE: true
