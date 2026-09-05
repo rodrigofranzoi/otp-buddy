@@ -24,3 +24,8 @@ Optionally auto-copy codes to the clipboard, or confirm with one click. Credenti
 ## Google Play
 
 N/A — macOS only.
+
+## Legal URLs (App Store Connect)
+
+- Privacy: https://rodrigofranzoi.github.io/otp-buddy/privacy.html
+- Terms: https://rodrigofranzoi.github.io/otp-buddy/terms.html
