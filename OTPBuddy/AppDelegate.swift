@@ -1,27 +1,44 @@
 import AppKit
 import SwiftUI
+import BuddyCore
 
+@MainActor
 final class AppDelegate: NSObject, NSApplicationDelegate {
     private var statusItem: NSStatusItem?
     private var popover: NSPopover?
 
     func applicationDidFinishLaunching(_ notification: Notification) {
+        BuddyLaunchAtLogin.enableByDefaultOnFirstInstall()
+
         let store = OTPStore.shared
-        store.start()
+        let pause = BuddyPauseController.shared
+        pause.onPauseChanged = { isPaused in
+            if isPaused {
+                store.stop()
+            } else {
+                store.start()
+            }
+        }
+        pause.restorePersistedPauseIfNeeded()
+        if !pause.isPaused {
+            store.start()
+        }
 
         let item = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
         if let button = item.button {
-            button.image = NSImage(systemSymbolName: "lock.shield", accessibilityDescription: "OTP Buddy")
             button.action = #selector(togglePopover)
             button.target = self
         }
         statusItem = item
+        updateStatusIcon()
 
         let popover = NSPopover()
         popover.behavior = .transient
-        popover.contentSize = NSSize(width: 300, height: 180)
+        popover.contentSize = NSSize(width: 300, height: 220)
         popover.contentViewController = NSHostingController(
-            rootView: OTPPopoverView().environmentObject(store)
+            rootView: OTPPopoverView()
+                .environmentObject(store)
+                .environmentObject(pause)
         )
         self.popover = popover
 
@@ -30,7 +47,20 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             object: nil,
             queue: .main
         ) { [weak self] _ in
-            self?.showPopover()
+            Task { @MainActor in
+                guard BuddyPauseController.shared.isPaused == false else { return }
+                self?.showPopover()
+            }
+        }
+
+        NotificationCenter.default.addObserver(
+            forName: .buddyPauseDidChange,
+            object: nil,
+            queue: .main
+        ) { [weak self] _ in
+            Task { @MainActor in
+                self?.updateStatusIcon()
+            }
         }
     }
 
@@ -46,6 +76,14 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         guard let button = statusItem?.button, let popover else { return }
         popover.show(relativeTo: button.bounds, of: button, preferredEdge: .minY)
         NSApp.activate(ignoringOtherApps: true)
+    }
+
+    private func updateStatusIcon() {
+        let paused = BuddyPauseController.shared.isPaused
+        let name = paused ? "lock.shield.fill" : "lock.shield"
+        let description = paused ? "OTP Buddy (paused)" : "OTP Buddy"
+        statusItem?.button?.image = NSImage(systemSymbolName: name, accessibilityDescription: description)
+        statusItem?.button?.appearsDisabled = paused
     }
 }
 

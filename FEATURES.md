@@ -9,6 +9,8 @@ Status: `planned` | `wip` | `done`
 | OTP detection (BuddyCore) | done | |
 | Auto-copy setting | done | |
 | Menu bar popup: new OTP / copied | done | |
+| Turn off until next session / timed / custom | done | Menu bar footer; stops IMAP poll |
+| Launch at login (default on install) | done | Settings Startup section |
 | Keychain credentials | done | |
 | Privacy: codes in-memory TTL | done | |
 | Unit + UI tests | done | |

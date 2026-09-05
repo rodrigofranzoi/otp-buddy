@@ -45,6 +45,11 @@ final class OTPStore: ObservableObject {
         }
     }
 
+    func stop() {
+        timer?.invalidate()
+        timer = nil
+    }
+
     func saveCredentials(password: String) throws {
         try BuddyKeychain.set(password, account: account.username, service: keychainService)
         if let data = try? JSONEncoder().encode(account) {

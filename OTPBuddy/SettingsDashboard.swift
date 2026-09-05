@@ -1,5 +1,6 @@
 import SwiftUI
 import BuddyCore
+import BuddyUI
 
 struct SettingsDashboard: View {
     @EnvironmentObject private var store: OTPStore
@@ -17,6 +18,9 @@ struct SettingsDashboard: View {
             Section("Behavior") {
                 Toggle("Automatically copy OTP to clipboard", isOn: $store.autoCopy)
                     .accessibilityIdentifier("auto-copy-toggle")
+            }
+            Section("Startup") {
+                BuddyLaunchAtLoginToggle()
             }
             Section("Status") {
                 Text(store.statusMessage)
@@ -51,6 +55,7 @@ struct SettingsDashboard: View {
 
 struct OTPPopoverView: View {
     @EnvironmentObject private var store: OTPStore
+    @EnvironmentObject private var pause: BuddyPauseController
 
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
@@ -67,9 +72,11 @@ struct OTPPopoverView: View {
             Text(store.statusMessage)
                 .font(.caption)
                 .foregroundStyle(.secondary)
-            Spacer()
+            Spacer(minLength: 0)
+            BuddyPauseControls(pause: pause)
         }
-        .padding()
+        .padding([.horizontal, .top])
+        .padding(.bottom, 4)
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
     }
 }
