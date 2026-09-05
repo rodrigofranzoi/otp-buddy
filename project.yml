@@ -15,7 +15,12 @@ targets:
     type: application
     platform: macOS
     sources:
-      - OTPBuddy
+      - path: OTPBuddy
+        excludes:
+          - Resources/GoogleService-Info.plist
+    resources:
+      - path: OTPBuddy/Resources/GoogleService-Info.plist
+      - path: OTPBuddy/Resources/Localizable.xcstrings
     dependencies:
       - package: shared-buddy
         product: BuddyCore
@@ -32,6 +37,7 @@ targets:
       CODE_SIGN_ENTITLEMENTS: OTPBuddy/OTPBuddy.entitlements
       LD_RUNPATH_SEARCH_PATHS: "@executable_path/../Frameworks"
       ENABLE_TESTABILITY: true
+      OTHER_LDFLAGS: "$(inherited) -ObjC"
     scheme:
       testTargets:
         - OTPBuddyTests
