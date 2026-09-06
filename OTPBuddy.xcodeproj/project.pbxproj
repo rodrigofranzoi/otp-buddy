@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1ED2F26C727DF8420499D161 /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 5B6EF1E8CBF6EB93E618F5E9 /* FirebaseCore */; };
 		3EE43AB5A745EB3B6B5C92C5 /* OTPBuddyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF0276830410E819025711E /* OTPBuddyApp.swift */; };
 		43659CF148966892793ADEFD /* BuddyTesting in Frameworks */ = {isa = PBXBuildFile; productRef = 479955BA71D1565536FE5DB3 /* BuddyTesting */; };
 		52FFB9545D6C91D0FFA1FDDD /* SettingsDashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F4EA5B544B38A6A806C221 /* SettingsDashboard.swift */; };
@@ -17,10 +16,9 @@
 		781E420F146C06D0A7687DE8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 890186F856052CF0ECDD3FFE /* AppDelegate.swift */; };
 		78795932DDC5B710D15F4BF8 /* BuddyCore in Frameworks */ = {isa = PBXBuildFile; productRef = 21521BEE9C4519A2510695E2 /* BuddyCore */; };
 		78AE4E579F080B9B4A9B8358 /* OTPStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76614D9C6AF3856ABE1F2397 /* OTPStoreTests.swift */; };
-		78E5C54C6C724C76C6EBDD25 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 27C9AB0AE21DB8CA5CBB992F /* FirebaseAnalytics */; };
 		8992F6515D8D711B2D2476D8 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = BF0BE6D4F4F9ABC817935068 /* Localizable.xcstrings */; };
-		BA0BDBD8C11185F9C266014C /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = DE5AC523FA5844D959253942 /* FirebaseCrashlytics */; };
 		C779E26F24DFAC11854E4598 /* OTPStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FC1AB0A9FBECAD377F9D2A /* OTPStore.swift */; };
+		D36E51DE9E51CA0AAAEDFB0A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D282301380E3CAE7C10189DA /* Assets.xcassets */; };
 		E6AB78E6E4EBCEA9D0E0C94C /* BuddyLocalization in Frameworks */ = {isa = PBXBuildFile; productRef = 3038361F19795ECE81D92E22 /* BuddyLocalization */; };
 		ECAF63467D69133391724EED /* OTPBuddyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC4114BFB502D17FBDEC433 /* OTPBuddyUITests.swift */; };
 		FA844260B4ADA1EDD93857A2 /* BuddyUI in Frameworks */ = {isa = PBXBuildFile; productRef = FF2CF9BDB7FB449CCF4E2B6B /* BuddyUI */; };
@@ -53,11 +51,11 @@
 		890186F856052CF0ECDD3FFE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8DC4114BFB502D17FBDEC433 /* OTPBuddyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPBuddyUITests.swift; sourceTree = "<group>"; };
 		98F0D2C95C5E1027DB4283EE /* OTPBuddy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OTPBuddy.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		A46354D6617DF57749D1F4A3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; explicitFileType = text.plist; lastKnownFileType = text.plist; name = "GoogleService-Info.plist"; path = "../OTPBuddy/Resources/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A5D9694EADE27D1E61CAE8EC /* IMAPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IMAPClient.swift; sourceTree = "<group>"; };
 		B7FC1AB0A9FBECAD377F9D2A /* OTPStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPStore.swift; sourceTree = "<group>"; };
 		BF0BE6D4F4F9ABC817935068 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		CE06521C9627E93FD1A61061 /* OTPBuddyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OTPBuddyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D282301380E3CAE7C10189DA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D6F4EA5B544B38A6A806C221 /* SettingsDashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsDashboard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -79,9 +77,6 @@
 			files = (
 				77BE4FC828E730597420D0B6 /* BuddyCore in Frameworks */,
 				43659CF148966892793ADEFD /* BuddyTesting in Frameworks */,
-				1ED2F26C727DF8420499D161 /* FirebaseCore in Frameworks */,
-				78E5C54C6C724C76C6EBDD25 /* FirebaseAnalytics in Frameworks */,
-				BA0BDBD8C11185F9C266014C /* FirebaseCrashlytics in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -108,6 +103,7 @@
 			isa = PBXGroup;
 			children = (
 				890186F856052CF0ECDD3FFE /* AppDelegate.swift */,
+				D282301380E3CAE7C10189DA /* Assets.xcassets */,
 				A5D9694EADE27D1E61CAE8EC /* IMAPClient.swift */,
 				74FA1B966F4092B9EF4094F6 /* Info.plist */,
 				56B3E898EEA6D4CAB35A969D /* OTPBuddy.entitlements */,
@@ -123,7 +119,6 @@
 			isa = PBXGroup;
 			children = (
 				76614D9C6AF3856ABE1F2397 /* OTPStoreTests.swift */,
-				A46354D6617DF57749D1F4A3 /* GoogleService-Info.plist */,
 			);
 			path = OTPBuddyTests;
 			sourceTree = "<group>";
@@ -207,7 +202,6 @@
 			buildPhases = (
 				4395F767EADD3AB1E4F67758 /* Sources */,
 				641829C63DD6CE7567C2C15B /* Frameworks */,
-				5BD5533325E75444BD4AA1DD /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -218,9 +212,6 @@
 			packageProductDependencies = (
 				26E966BB073F259B3A7DEEA4 /* BuddyCore */,
 				479955BA71D1565536FE5DB3 /* BuddyTesting */,
-				5B6EF1E8CBF6EB93E618F5E9 /* FirebaseCore */,
-				27C9AB0AE21DB8CA5CBB992F /* FirebaseAnalytics */,
-				DE5AC523FA5844D959253942 /* FirebaseCrashlytics */,
 			);
 			productName = OTPBuddyTests;
 			productReference = CE06521C9627E93FD1A61061 /* OTPBuddyTests.xctest */;
@@ -259,7 +250,6 @@
 			mainGroup = F34EB114661A2ABCE4A3E561;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				3C074A87F694975B35D97D78 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				44763BF8604AB4C0FB504353 /* XCLocalSwiftPackageReference "Vendor/shared-buddy" */,
 			);
 			preferredProjectObjectVersion = 77;
@@ -279,33 +269,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D36E51DE9E51CA0AAAEDFB0A /* Assets.xcassets in Resources */,
 				8992F6515D8D711B2D2476D8 /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		5BD5533325E75444BD4AA1DD /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}",
-				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${PRODUCT_NAME}",
-				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Info.plist",
-				"$(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/GoogleService-Info.plist",
-				"$(TARGET_BUILD_DIR)/$(EXECUTABLE_PATH)",
-				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${PRODUCT_NAME}.debug.dylib",
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${BUILD_DIR%/Build/*}/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run\"\n";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		2F849C6440DDA8643093526A /* Sources */ = {
@@ -378,9 +347,6 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
-				);
-				OTHER_LDFLAGS = (
-					"-ObjC",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.buddy.OTPBuddyTests;
 				SDKROOT = macosx;
@@ -455,7 +421,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -511,9 +477,6 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
-				);
-				OTHER_LDFLAGS = (
-					"-ObjC",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.buddy.OTPBuddyTests;
 				SDKROOT = macosx;
@@ -625,17 +588,6 @@
 		};
 /* End XCLocalSwiftPackageReference section */
 
-/* Begin XCRemoteSwiftPackageReference section */
-		3C074A87F694975B35D97D78 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 12.18.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
 /* Begin XCSwiftPackageProductDependency section */
 		21521BEE9C4519A2510695E2 /* BuddyCore */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -645,11 +597,6 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = BuddyCore;
 		};
-		27C9AB0AE21DB8CA5CBB992F /* FirebaseAnalytics */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 3C074A87F694975B35D97D78 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAnalytics;
-		};
 		3038361F19795ECE81D92E22 /* BuddyLocalization */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = BuddyLocalization;
@@ -657,16 +604,6 @@
 		479955BA71D1565536FE5DB3 /* BuddyTesting */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = BuddyTesting;
-		};
-		5B6EF1E8CBF6EB93E618F5E9 /* FirebaseCore */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 3C074A87F694975B35D97D78 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseCore;
-		};
-		DE5AC523FA5844D959253942 /* FirebaseCrashlytics */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 3C074A87F694975B35D97D78 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseCrashlytics;
 		};
 		E770B3698E19D4833F6B0E30 /* BuddyFirebase */ = {
 			isa = XCSwiftPackageProductDependency;

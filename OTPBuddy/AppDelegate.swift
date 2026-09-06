@@ -1,6 +1,7 @@
 import AppKit
 import SwiftUI
 import BuddyCore
+import BuddyUI
 
 @MainActor
 final class AppDelegate: NSObject, NSApplicationDelegate {
@@ -9,6 +10,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(_ notification: Notification) {
         BuddyLaunchAtLogin.enableByDefaultOnFirstInstall()
+        BuddyAppearanceSettings.applyAppKitAppearance()
 
         let store = OTPStore.shared
         let pause = BuddyPauseController.shared
@@ -34,7 +36,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
         let popover = NSPopover()
         popover.behavior = .transient
-        popover.contentSize = NSSize(width: 300, height: 220)
+        popover.contentSize = NSSize(width: 300, height: 300)
         popover.contentViewController = NSHostingController(
             rootView: OTPPopoverView()
                 .environmentObject(store)
@@ -62,6 +64,12 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
                 self?.updateStatusIcon()
             }
         }
+
+        BuddyMainWindow.hideOnLaunchIfNeeded()
+    }
+
+    func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
+        false
     }
 
     @objc private func togglePopover() {

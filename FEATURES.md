@@ -10,6 +10,7 @@ Status: `planned` | `wip` | `done`
 | Auto-copy setting | done | |
 | Menu bar popup: new OTP / copied | done | |
 | Turn off until next session / timed / custom | done | Menu bar footer; stops IMAP poll |
+| Open / Quit from menu bar | done | Opens settings window; terminates app |
 | Launch at login (default on install) | done | Settings Startup section |
 | Keychain credentials | done | |
 | Privacy: codes in-memory TTL | done | |

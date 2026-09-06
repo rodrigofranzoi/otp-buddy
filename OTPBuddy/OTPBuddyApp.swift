@@ -1,5 +1,7 @@
 import SwiftUI
+import BuddyCore
 import BuddyFirebase
+import BuddyUI
 
 @main
 struct OTPBuddyApp: App {
@@ -15,7 +17,9 @@ struct OTPBuddyApp: App {
         WindowGroup("OTP Buddy") {
             SettingsDashboard()
                 .environmentObject(store)
-                .frame(minWidth: 520, minHeight: 400)
+                .frame(minWidth: 640, minHeight: 440)
+                .background(BuddyMainWindowRegistrar())
+                .buddyAppearance(brand: .otpBuddy)
         }
     }
 }
