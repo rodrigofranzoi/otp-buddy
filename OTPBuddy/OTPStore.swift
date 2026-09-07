@@ -19,7 +19,7 @@ final class OTPStore: ObservableObject {
 
     @Published var account: IMAPAccount = .empty
     @Published var isConnected: Bool = false
-    @Published var statusMessage: String = "Not connected"
+    @Published var statusMessage: String = String(localized: "Not connected")
     @Published var latestOTP: String?
     @Published var latestAnnouncement: String = ""
     @Published var autoCopy: Bool = UserDefaults.standard.bool(forKey: BuddySettingsKey.autoCopyOTP)
@@ -56,7 +56,7 @@ final class OTPStore: ObservableObject {
             UserDefaults.standard.set(data, forKey: accountKey)
         }
         UserDefaults.standard.set(autoCopy, forKey: BuddySettingsKey.autoCopyOTP)
-        statusMessage = "Credentials saved"
+        statusMessage = String(localized: "Credentials saved")
     }
 
     func connect() async {
@@ -66,11 +66,11 @@ final class OTPStore: ObservableObject {
             try await client.connect()
             self.client = client
             isConnected = true
-            statusMessage = "Connected to \(account.host)"
+            statusMessage = String(localized: "Connected to \(account.host)")
             await poll()
         } catch {
             isConnected = false
-            statusMessage = "Connection failed: \(error.localizedDescription)"
+            statusMessage = String(localized: "Connection failed: \(error.localizedDescription)")
         }
     }
 
@@ -87,7 +87,7 @@ final class OTPStore: ObservableObject {
                 }
             }
         } catch {
-            statusMessage = "Poll error: \(error.localizedDescription)"
+            statusMessage = String(localized: "Poll error: \(error.localizedDescription)")
         }
     }
 
@@ -96,7 +96,7 @@ final class OTPStore: ObservableObject {
         if let match = OTPDetector.extract(from: body) {
             handleOTP(match.code)
         } else {
-            statusMessage = "No OTP found in demo email"
+            statusMessage = String(localized: "No OTP found in demo email")
         }
     }
 
@@ -105,7 +105,7 @@ final class OTPStore: ObservableObject {
         let pb = NSPasteboard.general
         pb.clearContents()
         pb.setString(code, forType: .string)
-        latestAnnouncement = "OTP copied to clipboard"
+        latestAnnouncement = String(localized: "OTP copied to clipboard")
     }
 
     private func handleOTP(_ code: String) {
@@ -116,9 +116,9 @@ final class OTPStore: ObservableObject {
             let pb = NSPasteboard.general
             pb.clearContents()
             pb.setString(code, forType: .string)
-            latestAnnouncement = "New OTP is on your clipboard"
+            latestAnnouncement = String(localized: "New OTP is on your clipboard")
         } else {
-            latestAnnouncement = "New OTP email received"
+            latestAnnouncement = String(localized: "New OTP email received")
         }
         NotificationCenter.default.post(name: .otpReceived, object: nil)
         statusMessage = latestAnnouncement

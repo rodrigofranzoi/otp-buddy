@@ -69,10 +69,10 @@ enum IMAPError: LocalizedError {
 
     var errorDescription: String? {
         switch self {
-        case .invalidConfig: return "Missing IMAP host or credentials"
-        case .connectionFailed: return "Could not connect to IMAP server"
-        case .unexpectedResponse(let s): return "Unexpected IMAP response: \(s)"
-        case .authFailed: return "IMAP authentication failed"
+        case .invalidConfig: return String(localized: "Missing IMAP host or credentials")
+        case .connectionFailed: return String(localized: "Could not connect to IMAP server")
+        case .unexpectedResponse(let s): return String(localized: "Unexpected IMAP response: \(s)")
+        case .authFailed: return String(localized: "IMAP authentication failed")
         }
     }
 }

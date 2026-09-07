@@ -1,5 +1,12 @@
 # Store Copy — OTP Buddy
 
+## Legal URLs (App Store Connect)
+
+- App Store ID: `6809226854`
+- Privacy: https://rodrigofranzoi.github.io/otp-buddy/privacy.html
+- Terms: https://rodrigofranzoi.github.io/otp-buddy/terms.html
+- Rate / write review: https://apps.apple.com/app/id6809226854?action=write-review
+
 ## App Store (English)
 
 **Name:** OTP Buddy  
@@ -24,8 +31,3 @@ Optionally auto-copy codes to the clipboard, or confirm with one click. Credenti
 ## Google Play
 
 N/A — macOS only.
-
-## Legal URLs (App Store Connect)
-
-- Privacy: https://rodrigofranzoi.github.io/otp-buddy/privacy.html
-- Terms: https://rodrigofranzoi.github.io/otp-buddy/terms.html

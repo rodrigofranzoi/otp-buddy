@@ -81,7 +81,7 @@ struct OTPPopoverView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             VStack(alignment: .leading, spacing: 12) {
-                Text(store.latestAnnouncement.isEmpty ? "Waiting for OTP emails…" : store.latestAnnouncement)
+                Text(store.latestAnnouncement.isEmpty ? String(localized: "Waiting for OTP emails…") : store.latestAnnouncement)
                     .font(.headline)
                     .accessibilityIdentifier("otp-announcement")
                 if store.latestOTP != nil && !store.autoCopy {
@@ -99,7 +99,7 @@ struct OTPPopoverView: View {
 
             Spacer(minLength: 0)
             BuddyPauseControls(pause: pause)
-            BuddyMenuBarAppControls(appName: "OTP Buddy")
+            BuddyMenuBarAppControls(appName: "OTP Buddy", brand: .otpBuddy)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
         .buddyAppearance(brand: .otpBuddy)
