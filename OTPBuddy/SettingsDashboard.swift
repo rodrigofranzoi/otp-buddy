@@ -53,9 +53,7 @@ struct SettingsDashboard: View {
                     Toggle("Automatically copy OTP to clipboard", isOn: $store.autoCopy)
                         .accessibilityIdentifier("auto-copy-toggle")
                 }
-                Section("Startup") {
-                    BuddyLaunchAtLoginToggle()
-                }
+                BuddyStartupSettingsSection()
                 Section("Status") {
                     Text(store.statusMessage)
                         .accessibilityIdentifier("status-message")

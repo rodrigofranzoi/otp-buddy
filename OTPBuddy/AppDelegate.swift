@@ -9,7 +9,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private var popover: NSPopover?
 
     func applicationDidFinishLaunching(_ notification: Notification) {
-        BuddyLaunchAtLogin.configureDefaultsOnFirstInstall()
         BuddyAppearanceSettings.applyAppKitAppearance()
 
         let store = OTPStore.shared
@@ -65,7 +64,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             }
         }
 
-        BuddyMainWindow.hideOnLaunchIfNeeded()
+        BuddyMainWindow.presentFirstLaunchExperienceIfNeeded(
+            appDisplayName: BuddyBrand.otpBuddy.displayName
+        )
     }
 
     func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
