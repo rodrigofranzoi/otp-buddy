@@ -9,7 +9,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private var popover: NSPopover?
 
     func applicationDidFinishLaunching(_ notification: Notification) {
-        BuddyLaunchAtLogin.enableByDefaultOnFirstInstall()
+        BuddyLaunchAtLogin.configureDefaultsOnFirstInstall()
         BuddyAppearanceSettings.applyAppKitAppearance()
 
         let store = OTPStore.shared

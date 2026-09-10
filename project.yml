@@ -18,8 +18,9 @@ targets:
       - path: OTPBuddy
         excludes:
           - Resources/GoogleService-Info.plist
-    resources:
       - path: OTPBuddy/Resources/GoogleService-Info.plist
+        buildPhase: resources
+    resources:
       - path: OTPBuddy/Resources/Localizable.xcstrings
     dependencies:
       - package: shared-buddy
