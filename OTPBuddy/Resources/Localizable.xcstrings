@@ -62,8 +62,15 @@
             "state": "translated",
             "value": "IMAPアカウント"
           }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "IMAP-Konto"
+          }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Copy to Clipboard": {
       "localizations": {
@@ -126,8 +133,15 @@
             "state": "translated",
             "value": "クリップボードにコピー"
           }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "In die Zwischenablage kopieren"
+          }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Connect": {
       "localizations": {
@@ -190,8 +204,15 @@
             "state": "translated",
             "value": "接続"
           }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verbinden"
+          }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Host (e.g. imap.gmail.com)": {
       "localizations": {
@@ -254,8 +275,15 @@
             "state": "translated",
             "value": "ホスト（例: imap.gmail.com）"
           }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Host (z. B. imap.gmail.com)"
+          }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Port": {
       "localizations": {
@@ -318,8 +346,15 @@
             "state": "translated",
             "value": "ポート"
           }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Port"
+          }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Username / email": {
       "localizations": {
@@ -382,8 +417,15 @@
             "state": "translated",
             "value": "ユーザー名 / メール"
           }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Benutzername / E-Mail"
+          }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "App password": {
       "localizations": {
@@ -446,8 +488,15 @@
             "state": "translated",
             "value": "アプリパスワード"
           }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "App-Passwort"
+          }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Use TLS": {
       "localizations": {
@@ -510,8 +559,15 @@
             "state": "translated",
             "value": "TLSを使用"
           }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "TLS verwenden"
+          }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Save credentials": {
       "localizations": {
@@ -574,8 +630,15 @@
             "state": "translated",
             "value": "認証情報を保存"
           }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zugangsdaten speichern"
+          }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Demo: ingest sample OTP email": {
       "localizations": {
@@ -638,8 +701,15 @@
             "state": "translated",
             "value": "デモ: サンプルOTPメールを取り込む"
           }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Demo: Beispiel-OTP-E-Mail einlesen"
+          }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Behavior": {
       "localizations": {
@@ -702,8 +772,15 @@
             "state": "translated",
             "value": "動作"
           }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verhalten"
+          }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Automatically copy OTP to clipboard": {
       "localizations": {
@@ -766,8 +843,15 @@
             "state": "translated",
             "value": "OTPを自動でクリップボードにコピー"
           }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "OTP automatisch in die Zwischenablage kopieren"
+          }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Startup": {
       "localizations": {
@@ -830,8 +914,15 @@
             "state": "translated",
             "value": "起動"
           }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start"
+          }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Status": {
       "localizations": {
@@ -894,8 +985,15 @@
             "state": "translated",
             "value": "ステータス"
           }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Status"
+          }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Latest code: %@": {
       "localizations": {
@@ -958,8 +1056,15 @@
             "state": "translated",
             "value": "最新コード: %@"
           }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aktueller Code: %@"
+          }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Waiting for OTP emails…": {
       "localizations": {
@@ -1022,8 +1127,15 @@
             "state": "translated",
             "value": "OTPメールを待機中…"
           }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Warte auf OTP-E-Mails…"
+          }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Not connected": {
       "localizations": {
@@ -1086,8 +1198,15 @@
             "state": "translated",
             "value": "未接続"
           }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nicht verbunden"
+          }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Credentials saved": {
       "localizations": {
@@ -1150,8 +1269,15 @@
             "state": "translated",
             "value": "認証情報を保存しました"
           }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zugangsdaten gespeichert"
+          }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Connected to %@": {
       "localizations": {
@@ -1214,8 +1340,15 @@
             "state": "translated",
             "value": "%@に接続済み"
           }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verbunden mit %@"
+          }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Connection failed: %@": {
       "localizations": {
@@ -1278,8 +1411,15 @@
             "state": "translated",
             "value": "接続に失敗: %@"
           }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verbindung fehlgeschlagen: %@"
+          }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Poll error: %@": {
       "localizations": {
@@ -1342,8 +1482,15 @@
             "state": "translated",
             "value": "ポーリングエラー: %@"
           }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abruffehler: %@"
+          }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "No OTP found in demo email": {
       "localizations": {
@@ -1406,8 +1553,15 @@
             "state": "translated",
             "value": "デモメールにOTPが見つかりません"
           }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kein OTP in der Demo-E-Mail gefunden"
+          }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "OTP copied to clipboard": {
       "localizations": {
@@ -1470,8 +1624,15 @@
             "state": "translated",
             "value": "OTPをクリップボードにコピーしました"
           }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "OTP in die Zwischenablage kopiert"
+          }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "New OTP is on your clipboard": {
       "localizations": {
@@ -1534,8 +1695,15 @@
             "state": "translated",
             "value": "新しいOTPがクリップボードにあります"
           }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Neuer OTP liegt in Ihrer Zwischenablage"
+          }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "New OTP email received": {
       "localizations": {
@@ -1598,8 +1766,15 @@
             "state": "translated",
             "value": "新しいOTPメールを受信しました"
           }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Neue OTP-E-Mail empfangen"
+          }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Missing IMAP host or credentials": {
       "localizations": {
@@ -1662,8 +1837,15 @@
             "state": "translated",
             "value": "IMAPホストまたは認証情報がありません"
           }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "IMAP-Host oder Zugangsdaten fehlen"
+          }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Could not connect to IMAP server": {
       "localizations": {
@@ -1726,8 +1908,15 @@
             "state": "translated",
             "value": "IMAPサーバーに接続できません"
           }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verbindung zum IMAP-Server nicht möglich"
+          }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "Unexpected IMAP response: %@": {
       "localizations": {
@@ -1790,8 +1979,15 @@
             "state": "translated",
             "value": "予期しないIMAP応答: %@"
           }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unerwartete IMAP-Antwort: %@"
+          }
         }
-      }
+      },
+      "extractionState": "manual"
     },
     "IMAP authentication failed": {
       "localizations": {
@@ -1854,8 +2050,15 @@
             "state": "translated",
             "value": "IMAP認証に失敗しました"
           }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "IMAP-Authentifizierung fehlgeschlagen"
+          }
         }
-      }
+      },
+      "extractionState": "manual"
     }
   },
   "version": "1.0"
