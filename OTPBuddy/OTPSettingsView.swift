@@ -33,11 +33,6 @@ struct OTPSettingsView: View {
                 }
                 BuddyPauseSettingsSection()
                 BuddyStartupSettingsSection()
-                BuddyRateAppSettingsSection(brand: brand)
-                Section(String(localized: "Status")) {
-                    Text(store.statusMessage)
-                        .accessibilityIdentifier("status-message")
-                }
             case BuddySettingsItem.privacy.id:
                 BuddyLegalLinksSection(brand: brand)
             default:
@@ -58,10 +53,11 @@ struct OTPPopoverView: View {
             VStack(alignment: .leading, spacing: 12) {
                 HStack {
                     Circle()
-                        .fill(store.isConnected ? Color.green : Color.gray.opacity(0.55))
+                        .fill(popoverStatusColor)
                         .frame(width: 10, height: 10)
                     Text(connectionLabel)
                         .font(.subheadline.weight(.medium))
+                        .foregroundStyle(BuddyTheme.BuddyColor.textPrimary)
                     Spacer()
                     Button {
                         Task { await toggleAllConnections() }
@@ -86,7 +82,7 @@ struct OTPPopoverView: View {
 
                 if store.mailItems.isEmpty {
                     Text(store.latestAnnouncement.isEmpty
-                           ? String(localized: "Waiting for OTP emails…")
+                           ? String(localized: "Waiting for OTP emails… Codes aren’t saved when you quit.")
                            : store.latestAnnouncement)
                         .font(.callout)
                         .foregroundStyle(.secondary)
@@ -94,8 +90,12 @@ struct OTPPopoverView: View {
                     Text(String(localized: "Recent codes"))
                         .font(.caption.weight(.semibold))
                         .foregroundStyle(.secondary)
-                    ForEach(store.mailItems.prefix(3)) { item in
-                        OTPMailRow(item: item) {
+                    let recent = Array(store.mailItems.prefix(3))
+                    ForEach(Array(recent.enumerated()), id: \.element.id) { index, item in
+                        OTPMailRow(
+                            item: item,
+                            shortcutHint: BuddyDigitCopyShortcutsModifier.hint(for: index)
+                        ) {
                             store.copyCode(item.code)
                         }
                     }
@@ -104,24 +104,48 @@ struct OTPPopoverView: View {
             .padding([.horizontal, .top])
 
             Spacer(minLength: 8)
-            BuddyPauseControls(pause: pause)
-            BuddyMenuBarAppControls(appName: "OTP Buddy", brand: .otpBuddy)
+            BuddyMenuBarFooter {
+                BuddyPauseControls(pause: pause)
+                BuddyMenuBarAppControls(appName: "OTP Buddy", brand: .otpBuddy)
+            }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+        // Opaque chrome so desktop/wallpaper blue doesn’t sit behind blue accent labels.
+        // Apply after `.buddyAppearance` so label color wins over accent tint on body text.
         .buddyAppearance(brand: .otpBuddy)
+        .background(BuddyTheme.BuddyColor.background)
+        .foregroundStyle(BuddyTheme.BuddyColor.textPrimary)
+        .buddyDigitCopyShortcuts(itemCount: min(store.mailItems.count, 3)) { index in
+            copyRecentCode(at: index)
+        }
     }
 
     private var connectionLabel: String {
         if store.accounts.isEmpty {
             return String(localized: "No accounts")
         }
+        if !store.failedAccountIDs.isEmpty, !store.isConnected {
+            return String(localized: "Connection error")
+        }
         if store.areAllAccountsConnected {
             return String(localized: "Connected")
         }
         if store.isConnected {
-            return String(localized: "Partially connected")
+            return store.failedAccountIDs.isEmpty
+                ? String(localized: "Partially connected")
+                : String(localized: "Connection error")
         }
         return String(localized: "Disconnected")
+    }
+
+    private var popoverStatusColor: Color {
+        if !store.failedAccountIDs.isEmpty {
+            return Color.red.opacity(0.85)
+        }
+        if store.isConnected {
+            return .green
+        }
+        return Color.gray.opacity(0.55)
     }
 
     private func toggleAllConnections() async {
@@ -132,5 +156,13 @@ struct OTPPopoverView: View {
         } else {
             _ = await store.connectAll(notifyOnPartialFailure: true)
         }
+    }
+
+    private func copyRecentCode(at index: Int) {
+        let recent = Array(store.mailItems.prefix(3))
+        guard recent.indices.contains(index) else { return }
+        let item = recent[index]
+        guard !item.isExpired else { return }
+        store.copyCode(item.code)
     }
 }
