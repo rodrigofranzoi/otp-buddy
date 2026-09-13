@@ -68,6 +68,141 @@ Optional kopieren Sie Codes automatisch in die Zwischenablage oder bestätigen m
 
 ---
 
+## Dutch (`nl`)
+
+**Name:** OTP Buddy  
+**Subtitle:** E-mailcodes naar klembord  
+**Keywords:** OTP,2FA,e-mail,verificatie,IMAP,klembord,menubalk  
+**Promotional Text:** OTP-codes van je inbox naar de menubalk — optioneel één-klik kopiëren, inloggegevens in de Sleutelhanger.
+
+**Description:**
+
+OTP Buddy bewaakt een mailbox die je koppelt (IMAP) en toont eenmalige codes in de menubalk zodra ze binnenkomen.
+
+Kopieer codes optioneel automatisch naar het klembord, of bevestig met één klik. Inloggegevens staan in de Sleutelhanger; codes blijven kort in het geheugen en worden nooit geüpload.
+
+---
+
+## Portuguese (`pt`)
+
+**Name:** OTP Buddy  
+**Subtitle:** Códigos de e-mail no clipboard  
+**Keywords:** OTP,2FA,email,verificação,IMAP,clipboard,barra menus  
+**Promotional Text:** Códigos OTP da caixa de entrada para a barra de menus — cópia opcional com um clique, credenciais no Porta-chaves.
+
+**Description:**
+
+O OTP Buddy observa uma caixa de correio que liga (IMAP) e mostra códigos de uso único na barra de menus assim que chegam.
+
+Opcionalmente copia códigos automaticamente para a área de transferência, ou confirma com um clique. As credenciais ficam no Porta-chaves; os códigos ficam brevemente na memória e nunca são enviados.
+
+---
+
+## Spanish (`es`)
+
+**Name:** OTP Buddy  
+**Subtitle:** Códigos email al portapapeles 
+**Keywords:** OTP,2FA,email,verificación,IMAP,portapapeles,barra menú  
+**Promotional Text:** Códigos OTP de tu bandeja a la barra de menús — copia opcional con un clic, credenciales en el Llavero.
+
+**Description:**
+
+OTP Buddy vigila un buzón que conectas (IMAP) y muestra códigos de un solo uso en la barra de menús en cuanto llegan.
+
+Opcionalmente copia códigos al portapapeles de forma automática, o confirma con un clic. Las credenciales viven en el Llavero; los códigos se guardan brevemente en memoria y nunca se suben.
+
+---
+
+## French (`fr`)
+
+**Name:** OTP Buddy  
+**Subtitle:** Codes e-mail au presse-papiers  
+**Keywords:** OTP,2FA,e-mail,vérification,IMAP,presse-papiers,menu  
+**Promotional Text:** Codes OTP de votre boîte de réception vers la barre de menus — copie optionnelle en un clic, identifiants dans le Trousseau.
+
+**Description:**
+
+OTP Buddy surveille une boîte mail que vous connectez (IMAP) et affiche les codes à usage unique dans la barre de menus dès qu’ils arrivent.
+
+Copiez automatiquement les codes vers le presse-papiers, ou confirmez en un clic. Les identifiants restent dans le Trousseau ; les codes restent brièvement en mémoire et ne sont jamais envoyés.
+
+---
+
+## Italian (`it`)
+
+**Name:** OTP Buddy  
+**Subtitle:** Codici e-mail negli appunti  
+**Keywords:** OTP,2FA,email,verifica,IMAP,appunti,barra menu  
+**Promotional Text:** Codici OTP dalla posta alla barra dei menu — copia opzionale con un clic, credenziali nel Portachiavi.
+
+**Description:**
+
+OTP Buddy controlla una casella che colleghi (IMAP) e mostra i codici monouso nella barra dei menu non appena arrivano.
+
+Puoi copiare i codici automaticamente negli appunti, oppure confermare con un clic. Le credenziali restano nel Portachiavi; i codici restano brevemente in memoria e non vengono mai caricati.
+
+---
+
+## Arabic (`ar`)
+
+**Name:** OTP Buddy  
+**Subtitle:** رموز البريد إلى الحافظة  
+**Keywords:** OTP,2FA,بريد,تحقق,IMAP,حافظة,شريط القوائم  
+**Promotional Text:** رموز OTP من صندوق الوارد إلى شريط القوائم — نسخ اختياري بنقرة واحدة، وبيانات الدخول في سلسلة المفاتيح.
+
+**Description:**
+
+يراقب OTP Buddy صندوق بريد تربطه (IMAP) ويعرض رموز المرور لمرة واحدة في شريط القوائم فور وصولها.
+
+يمكنك نسخ الرموز تلقائيًا إلى الحافظة، أو التأكيد بنقرة واحدة. تبقى بيانات الدخول في سلسلة المفاتيح؛ وتُحفظ الرموز لفترة قصيرة في الذاكرة ولا تُرفع أبدًا.
+
+---
+
+## Chinese Simplified (`zh`)
+
+**Name:** OTP Buddy  
+**Subtitle:** 邮件验证码到剪贴板  
+**Keywords:** OTP,2FA,邮件,验证,IMAP,剪贴板,菜单栏  
+**Promotional Text:** 收件箱中的 OTP 验证码直达菜单栏——可选一键复制，凭据保存在钥匙串。
+
+**Description:**
+
+OTP Buddy 监视你连接的邮箱（IMAP），并在验证码到达的瞬间在菜单栏显示一次性密码。
+
+可选择自动复制到剪贴板，或一键确认。凭据保存在钥匙串；验证码仅短暂驻留内存，绝不会上传。
+
+---
+
+## Russian (`ru`)
+
+**Name:** OTP Buddy  
+**Subtitle:** Коды из почты в буфер  
+**Keywords:** OTP,2FA,почта,проверка,IMAP,буфер,меню  
+**Promotional Text:** OTP-коды из входящих в меню — опциональное копирование в один клик, учётные данные в Связке ключей.
+
+**Description:**
+
+OTP Buddy следит за подключённым почтовым ящиком (IMAP) и показывает одноразовые коды в меню сразу после получения.
+
+Можно автоматически копировать коды в буфер обмена или подтверждать одним кликом. Учётные данные хранятся в Связке ключей; коды коротко держатся в памяти и никогда не загружаются.
+
+---
+
+## Japanese (`ja`)
+
+**Name:** OTP Buddy  
+**Subtitle:** メールコードをクリップボードへ  
+**Keywords:** OTP,2FA,メール,認証,IMAP,クリップボード,メニューバー  
+**Promotional Text:** 受信トレイの OTP をメニューバーへ — 任意のワンクリックコピー、認証情報はキーチェーンに。
+
+**Description:**
+
+OTP Buddy は接続したメールボックス（IMAP）を監視し、ワンタイムパスコードが届いた瞬間にメニューバーへ表示します。
+
+コードを自動でクリップボードへコピーするか、ワンクリックで確定できます。認証情報はキーチェーンに保存され、コードは短時間メモリに保持されるだけでアップロードされません。
+
+---
+
 ## Google Play
 
 N/A — macOS only.

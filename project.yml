@@ -19,8 +19,11 @@ options:
     - ru
     - ja
 settings:
+  BASE_SDK: macosx
   SWIFT_VERSION: "5.9"
   MACOSX_DEPLOYMENT_TARGET: "13.0"
+  DEVELOPMENT_TEAM: "G42Z863W7H"
+  CODE_SIGN_STYLE: Automatic
 packages:
   shared-buddy:
     path: Vendor/shared-buddy
@@ -51,6 +54,7 @@ targets:
       GENERATE_INFOPLIST_FILE: false
       CODE_SIGN_ENTITLEMENTS: OTPBuddy/OTPBuddy.entitlements
       LD_RUNPATH_SEARCH_PATHS: "@executable_path/../Frameworks"
+      ENABLE_HARDENED_RUNTIME: true
       ENABLE_TESTABILITY: true
       OTHER_LDFLAGS: "$(inherited) -ObjC"
     scheme:

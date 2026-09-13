@@ -9,7 +9,7 @@ Use this when filling **App Privacy**, **Export Compliance**, and review notes i
 | Clipboard history (text + images) | JSON in UserDefaults | On device |
 | Clipboard favorites | JSON in UserDefaults | On device |
 | Screenshot gallery (images + notes) | JSON in UserDefaults | On device |
-| IMAP password (OTP Buddy) | Keychain item | Keychain |
+| IMAP accounts + app passwords (OTP Buddy) | macOS Keychain (app-sandbox scoped) | Keychain |
 | OTP codes | Not written to disk | Memory only, short TTL |
 
 **Preferences** (retention days, analytics, auto-copy) also live in UserDefaults — no secrets.
@@ -17,6 +17,7 @@ Use this when filling **App Privacy**, **Export Compliance**, and review notes i
 **We do not** send clipboard, screenshots, email bodies, or OTP codes to Firebase or any server.
 
 Clipboard / screenshot payloads are **not** encrypted at rest (plain JSON in UserDefaults).
+IMAP account lists and app passwords are **Keychain-only** (legacy UserDefaults / Application Support copies are migrated once and deleted).
 
 ---
 
@@ -50,7 +51,7 @@ Privacy policy should state:
 
 - Clipboard / screenshots / favorites are stored on device (UserDefaults).
 - OTP codes are not persisted.
-- IMAP passwords are Keychain-only.
+- IMAP accounts and app passwords are Keychain-only.
 - Analytics never includes clipboard, image, or email content.
 
 ---
@@ -59,7 +60,7 @@ Privacy policy should state:
 
 ```
 Storage: clipboard/screenshot history as JSON in UserDefaults (on device only).
-IMAP password (OTP Buddy): macOS Keychain.
+IMAP accounts + app passwords (OTP Buddy): macOS Keychain (app sandbox).
 No proprietary crypto. No cloud sync of clipboard/screenshots.
 Export: exempt — HTTPS/TLS only.
 ```

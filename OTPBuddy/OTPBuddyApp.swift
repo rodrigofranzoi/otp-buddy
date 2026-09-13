@@ -15,10 +15,17 @@ struct OTPBuddyApp: App {
 
     var body: some Scene {
         WindowGroup("OTP Buddy") {
-            SettingsDashboard()
+            OTPDashboardView()
                 .environmentObject(store)
-                .frame(minWidth: 640, minHeight: 440)
+                .frame(minWidth: 900, minHeight: 560)
                 .background(BuddyMainWindowRegistrar())
+                .buddyAppearance(brand: .otpBuddy)
+                .buddyAskForReviewOccasionally(brand: .otpBuddy)
+        }
+
+        Settings {
+            OTPSettingsView()
+                .environmentObject(store)
                 .buddyAppearance(brand: .otpBuddy)
         }
     }

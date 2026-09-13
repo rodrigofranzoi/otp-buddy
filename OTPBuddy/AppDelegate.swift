@@ -10,6 +10,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(_ notification: Notification) {
         BuddyAppearanceSettings.applyAppKitAppearance()
+        OTPNotifier.configure()
 
         let store = OTPStore.shared
         let pause = BuddyPauseController.shared
@@ -21,8 +22,13 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             }
         }
         pause.restorePersistedPauseIfNeeded()
-        if !pause.isPaused {
-            store.start()
+        Task {
+            if store.autoReconnectOnLaunch {
+                await store.reconnectIfPossible()
+            }
+            if !pause.isPaused, store.isConnected {
+                store.start()
+            }
         }
 
         let item = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
@@ -35,7 +41,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
         let popover = NSPopover()
         popover.behavior = .transient
-        popover.contentSize = NSSize(width: 300, height: 300)
+        popover.contentSize = NSSize(width: 320, height: 420)
         popover.contentViewController = NSHostingController(
             rootView: OTPPopoverView()
                 .environmentObject(store)
@@ -43,19 +49,29 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         )
         self.popover = popover
 
+        // Banner handles the alert; open the menu-bar popover only if the user taps the notification.
         NotificationCenter.default.addObserver(
-            forName: .otpReceived,
+            forName: .otpShowPopover,
             object: nil,
             queue: .main
         ) { [weak self] _ in
             Task { @MainActor in
-                guard BuddyPauseController.shared.isPaused == false else { return }
                 self?.showPopover()
             }
         }
 
         NotificationCenter.default.addObserver(
             forName: .buddyPauseDidChange,
+            object: nil,
+            queue: .main
+        ) { [weak self] _ in
+            Task { @MainActor in
+                self?.updateStatusIcon()
+            }
+        }
+
+        NotificationCenter.default.addObserver(
+            forName: .otpConnectionDidChange,
             object: nil,
             queue: .main
         ) { [weak self] _ in
@@ -99,10 +115,25 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
     private func updateStatusIcon() {
         let paused = BuddyPauseController.shared.isPaused
-        let name = paused ? "lock.shield.fill" : "lock.shield"
-        let description = paused ? "OTP Buddy (paused)" : "OTP Buddy"
+        let connected = OTPStore.shared.isConnected
+        let name: String
+        if paused {
+            name = "lock.shield.fill"
+        } else if connected {
+            name = "lock.shield.fill"
+        } else {
+            name = "lock.shield"
+        }
+        let description: String
+        if paused {
+            description = "OTP Buddy (paused)"
+        } else if connected {
+            description = "OTP Buddy (connected)"
+        } else {
+            description = "OTP Buddy (disconnected)"
+        }
         statusItem?.button?.image = NSImage(systemSymbolName: name, accessibilityDescription: description)
-        statusItem?.button?.appearsDisabled = paused
+        statusItem?.button?.appearsDisabled = paused || !connected
     }
 }
 
