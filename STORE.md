@@ -11,7 +11,7 @@ Supported locales: `en`, `de`, `nl`, `pt`, `es`, `fr`, `it`, `ar`, `zh`, `ru`, `
 
 ## What's New (all locales)
 
-Initial release.
+Preferences from the menu-bar pin now opens Settings reliably.
 
 ---
 
