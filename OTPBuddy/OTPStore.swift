@@ -1,7 +1,9 @@
 import Foundation
 import AppKit
+import SwiftUI
 import BuddyCore
 import BuddyFirebase
+import BuddyUI
 import Combine
 
 struct IMAPAccount: Codable, Equatable {
@@ -75,6 +77,7 @@ struct OTPMailItem: Identifiable, Codable, Equatable {
     let code: String
     let subject: String
     let body: String
+    let isHTML: Bool
     let receivedAt: Date
     let expiresAt: Date?
 
@@ -86,6 +89,45 @@ struct OTPMailItem: Identifiable, Codable, Equatable {
     func secondsRemaining(at date: Date = Date()) -> TimeInterval? {
         guard let expiresAt else { return nil }
         return expiresAt.timeIntervalSince(date)
+    }
+
+    enum CodingKeys: String, CodingKey {
+        case id, accountId, uid, code, subject, body, isHTML, receivedAt, expiresAt
+    }
+
+    init(
+        id: UUID = UUID(),
+        accountId: UUID,
+        uid: UInt32,
+        code: String,
+        subject: String,
+        body: String,
+        isHTML: Bool = false,
+        receivedAt: Date,
+        expiresAt: Date?
+    ) {
+        self.id = id
+        self.accountId = accountId
+        self.uid = uid
+        self.code = code
+        self.subject = subject
+        self.body = body
+        self.isHTML = isHTML
+        self.receivedAt = receivedAt
+        self.expiresAt = expiresAt
+    }
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        id = try container.decode(UUID.self, forKey: .id)
+        accountId = try container.decode(UUID.self, forKey: .accountId)
+        uid = try container.decode(UInt32.self, forKey: .uid)
+        code = try container.decode(String.self, forKey: .code)
+        subject = try container.decode(String.self, forKey: .subject)
+        body = try container.decode(String.self, forKey: .body)
+        isHTML = try container.decodeIfPresent(Bool.self, forKey: .isHTML) ?? false
+        receivedAt = try container.decode(Date.self, forKey: .receivedAt)
+        expiresAt = try container.decodeIfPresent(Date.self, forKey: .expiresAt)
     }
 }
 
@@ -271,6 +313,8 @@ final class OTPStore: ObservableObject {
     @Published var selectedAccountID: UUID?
     @Published var selectedMailID: UUID?
     @Published var connectedAccountIDs: Set<UUID> = []
+    /// Accounts that failed the last connect/poll attempt (shown as red on the account list).
+    @Published var failedAccountIDs: Set<UUID> = []
     @Published var statusMessage: String = String(localized: "Not connected")
     @Published var latestOTP: String?
     @Published var latestAnnouncement: String = ""
@@ -283,6 +327,13 @@ final class OTPStore: ObservableObject {
     }()
 
     var isConnected: Bool { !connectedAccountIDs.isEmpty }
+
+    /// Sidebar / pin status dot: green connected, red failed/error, gray idle.
+    func accountStatusColor(for accountID: UUID) -> Color {
+        if connectedAccountIDs.contains(accountID) { return .green }
+        if failedAccountIDs.contains(accountID) { return Color.red.opacity(0.85) }
+        return Color.gray.opacity(0.45)
+    }
 
     var selectedAccount: TrackedAccount? {
         guard let selectedAccountID else { return accounts.first }
@@ -309,11 +360,18 @@ final class OTPStore: ObservableObject {
     private var clients: [UUID: IMAPClient] = [:]
     private var seenUIDs: [UUID: Set<UInt32>] = [:]
     private var cachedPasswords: [UUID: String] = [:]
+    private var idleTasks: [UUID: Task<Void, Never>] = [:]
+    private var pollingAccountIDs: Set<UUID> = []
+    /// How long to stay in IMAP IDLE before refreshing (under Gmail’s ~29m limit).
+    private static let idleTimeout: TimeInterval = 15 * 60
+    /// Poll interval when the server does not support IDLE.
+    private static let pollOnlyInterval: TimeInterval = 2
+    private static let fetchLimit = 8
 
     init() {
         loadAccounts()
         purgePlaceholderAccountsIfNeeded()
-        loadMailItems()
+        clearPersistedMailHistory()
         loadSeenUIDs()
         autoCopy = UserDefaults.standard.bool(forKey: BuddySettingsKey.autoCopyOTP)
         if selectedAccountID == nil {
@@ -369,10 +427,9 @@ final class OTPStore: ObservableObject {
 
     func start() {
         timer?.invalidate()
-        timer = Timer.scheduledTimer(withTimeInterval: 15, repeats: true) { [weak self] _ in
-            Task { @MainActor in
-                await self?.pollAll()
-            }
+        timer = nil
+        for id in connectedAccountIDs {
+            startWatching(accountID: id)
         }
         Task { await pollAll() }
     }
@@ -380,6 +437,54 @@ final class OTPStore: ObservableObject {
     func stop() {
         timer?.invalidate()
         timer = nil
+        for id in Array(idleTasks.keys) {
+            stopWatching(accountID: id)
+        }
+        // Unblock any in-flight IDLE so pause/disconnect takes effect immediately.
+        for client in clients.values {
+            Task { await client.interrupt() }
+        }
+    }
+
+    private func startWatching(accountID: UUID) {
+        stopWatching(accountID: accountID)
+        idleTasks[accountID] = Task { @MainActor [weak self] in
+            guard let self else { return }
+            while !Task.isCancelled, self.connectedAccountIDs.contains(accountID) {
+                if BuddyPauseController.shared.isPaused { break }
+                guard let client = self.clients[accountID] else { break }
+
+                var usedIdle = false
+                if await client.prefersIdle() {
+                    do {
+                        // Near-push: server wakes us on new mail instead of waiting for a timer.
+                        let changed = try await client.idleForChanges(timeout: Self.idleTimeout)
+                        if changed {
+                            print("[OTP] IDLE wake — mailbox changed, polling…")
+                        }
+                        usedIdle = true
+                    } catch {
+                        self.failedAccountIDs.insert(accountID)
+                        self.statusMessage = String(localized: "Poll error: \(error.localizedDescription)")
+                        print("[OTP] IDLE/session error: \(error.localizedDescription)")
+                        try? await Task.sleep(nanoseconds: 2_000_000_000)
+                    }
+                }
+
+                await self.poll(accountID: accountID)
+
+                if Task.isCancelled { break }
+                let prefersIdle = await client.prefersIdle()
+                if !usedIdle || !prefersIdle {
+                    try? await Task.sleep(nanoseconds: UInt64(Self.pollOnlyInterval * 1_000_000_000))
+                }
+            }
+        }
+    }
+
+    private func stopWatching(accountID: UUID) {
+        idleTasks[accountID]?.cancel()
+        idleTasks[accountID] = nil
     }
 
     func persistPreferences() {
@@ -440,7 +545,6 @@ final class OTPStore: ObservableObject {
             selectedMailID = mailItemsForSelectedAccount.first?.id
         }
         persistAccountsIgnoringErrors()
-        persistMailItems()
         persistSeenUIDs()
         postConnectionChange()
     }
@@ -458,6 +562,7 @@ final class OTPStore: ObservableObject {
             try await client.connect()
             clients[accountID] = client
             connectedAccountIDs.insert(accountID)
+            failedAccountIDs.remove(accountID)
             statusMessage = String(localized: "Connected to \(account.imap.host)")
             await poll(accountID: accountID)
             if !BuddyPauseController.shared.isPaused {
@@ -466,20 +571,29 @@ final class OTPStore: ObservableObject {
             postConnectionChange()
         } catch let error as OTPCredentialStore.StoreError {
             connectedAccountIDs.remove(accountID)
+            failedAccountIDs.insert(accountID)
             clients[accountID] = nil
+            stopWatching(accountID: accountID)
             statusMessage = error.localizedDescription
             postConnectionChange()
         } catch {
             connectedAccountIDs.remove(accountID)
+            failedAccountIDs.insert(accountID)
             clients[accountID] = nil
+            stopWatching(accountID: accountID)
             statusMessage = String(localized: "Connection failed: \(error.localizedDescription)")
             postConnectionChange()
         }
     }
 
     func disconnect(accountID: UUID) {
+        stopWatching(accountID: accountID)
+        if let client = clients[accountID] {
+            Task { await client.disconnect() }
+        }
         clients[accountID] = nil
         connectedAccountIDs.remove(accountID)
+        failedAccountIDs.remove(accountID)
         if connectedAccountIDs.isEmpty {
             stop()
             statusMessage = String(localized: "Disconnected")
@@ -488,27 +602,70 @@ final class OTPStore: ObservableObject {
     }
 
     func pollAll() async {
-        for id in connectedAccountIDs {
-            await poll(accountID: id)
+        await withTaskGroup(of: Void.self) { group in
+            for id in connectedAccountIDs {
+                group.addTask { @MainActor in
+                    await self.poll(accountID: id)
+                }
+            }
         }
     }
 
     func poll(accountID: UUID) async {
         guard connectedAccountIDs.contains(accountID), let client = clients[accountID] else { return }
+        guard pollingAccountIDs.insert(accountID).inserted else { return }
+        defer { pollingAccountIDs.remove(accountID) }
+
         do {
-            let messages = try await client.fetchRecentBodies(limit: 8)
-            let cutoff = Date().addingTimeInterval(-Self.notifyIfReceivedWithin)
             var seen = seenUIDs[accountID] ?? []
+            let afterUID = seen.max() ?? 0
+            let messages = try await client.fetchRecentBodies(
+                limit: Self.fetchLimit,
+                excludingUIDs: seen,
+                afterUID: afterUID
+            )
+            let cutoff = Date().addingTimeInterval(-Self.notifyIfReceivedWithin)
             for message in messages {
                 if seen.contains(message.uid) { continue }
                 seen.insert(message.uid)
-                guard let receivedAt = message.receivedAt, receivedAt >= cutoff else { continue }
-                guard let match = OTPDetector.extract(from: message.scanText), match.confidence >= 0.75 else { continue }
+                let detectStarted = Date()
+                let match = OTPDetector.extract(from: message.scanText)
+                let detectMs = Date().timeIntervalSince(detectStarted) * 1000
+                guard let receivedAt = message.receivedAt, receivedAt >= cutoff else {
+                    print(String(
+                        format: "[OTP] skip uid=%u (too old or no date) detect=%.1fms",
+                        message.uid,
+                        detectMs
+                    ))
+                    continue
+                }
+                guard let match, match.confidence >= 0.75 else {
+                    print(String(
+                        format: "[OTP] skip uid=%u subject=\"%@\" no OTP (conf=%.2f) detect=%.1fms scanChars=%d",
+                        message.uid,
+                        String(message.subject.prefix(60)),
+                        match?.confidence ?? 0,
+                        detectMs,
+                        message.scanText.count
+                    ))
+                    continue
+                }
+                print(String(
+                    format: "[OTP] NEW email uid=%u code=%@ subject=\"%@\" detect=%.1fms scanChars=%d receivedAt=%@",
+                    message.uid,
+                    match.code,
+                    String(message.subject.prefix(60)),
+                    detectMs,
+                    message.scanText.count,
+                    receivedAt.description
+                ))
                 handleOTP(match, message: message, accountID: accountID, receivedAt: receivedAt)
             }
             seenUIDs[accountID] = seen
             persistSeenUIDs()
+            failedAccountIDs.remove(accountID)
         } catch {
+            failedAccountIDs.insert(accountID)
             statusMessage = String(localized: "Poll error: \(error.localizedDescription)")
         }
     }
@@ -524,6 +681,7 @@ final class OTPStore: ObservableObject {
                 uid: UInt32.random(in: 1...UInt32.max),
                 subject: String(localized: "Demo verification email"),
                 body: body,
+                isHTML: false,
                 scanText: body,
                 receivedAt: Date()
             )
@@ -531,6 +689,114 @@ final class OTPStore: ObservableObject {
         } else {
             statusMessage = String(localized: "No OTP found in demo email")
         }
+    }
+
+    /// Seed demo accounts + OTP mail for App Store screenshot capture (no live IMAP).
+    func installMarketingSeed() {
+        stop()
+        clients.removeAll()
+        idleTasks.values.forEach { $0.cancel() }
+        idleTasks.removeAll()
+        pollingAccountIDs.removeAll()
+
+        let workID = UUID()
+        let personalID = UUID()
+        let work = TrackedAccount(
+            id: workID,
+            title: "Work",
+            provider: .gmail,
+            imap: IMAPAccount(host: "imap.gmail.com", port: 993, username: "alex@company.com", useTLS: true)
+        )
+        let personal = TrackedAccount(
+            id: personalID,
+            title: "",
+            provider: .icloud,
+            imap: IMAPAccount(host: "imap.mail.me.com", port: 993, username: "alex@icloud.com", useTLS: true)
+        )
+        accounts = [work, personal]
+        selectedAccountID = workID
+        connectedAccountIDs = [workID, personalID]
+        failedAccountIDs = []
+        cachedPasswords[workID] = "marketing-demo"
+        cachedPasswords[personalID] = "marketing-demo"
+
+        let now = Date()
+        let workBody = """
+        From: security@company.com
+        Subject: Your verification code
+
+        Use verification code 482913 to sign in. This one-time passcode expires in 10 minutes.
+        """
+        let bankBody = """
+        From: alerts@bank.example
+        Subject: Confirm your transfer
+
+        Your confirmation code is 719204. It expires in 5 minutes.
+        """
+        let personalBody = """
+        From: no-reply@appleid.apple.com
+        Subject: Your Apple Account code
+
+        Your Apple Account code is 305871. Do not share it.
+        """
+        mailItems = [
+            OTPMailItem(
+                accountId: workID,
+                uid: 1001,
+                code: "482913",
+                subject: "Your verification code",
+                body: workBody,
+                isHTML: false,
+                receivedAt: now.addingTimeInterval(-90),
+                expiresAt: now.addingTimeInterval(9 * 60)
+            ),
+            OTPMailItem(
+                accountId: workID,
+                uid: 1002,
+                code: "719204",
+                subject: "Confirm your transfer",
+                body: bankBody,
+                isHTML: false,
+                receivedAt: now.addingTimeInterval(-8 * 60),
+                expiresAt: now.addingTimeInterval(4 * 60)
+            ),
+            OTPMailItem(
+                accountId: personalID,
+                uid: 2001,
+                code: "305871",
+                subject: "Your Apple Account code",
+                body: personalBody,
+                isHTML: false,
+                receivedAt: now.addingTimeInterval(-20 * 60),
+                expiresAt: now.addingTimeInterval(40 * 60)
+            )
+        ]
+        selectedMailID = mailItems.first?.id
+        latestOTP = mailItems.first?.code
+        latestAnnouncement = String(localized: "New OTP email received")
+        statusMessage = String(localized: "Connected to \(work.imap.host)")
+        autoCopy = false
+        objectWillChange.send()
+        postConnectionChange()
+    }
+
+    func prepareMarketingEmptyState() {
+        stop()
+        clients.removeAll()
+        idleTasks.values.forEach { $0.cancel() }
+        idleTasks.removeAll()
+        accounts = []
+        mailItems = []
+        selectedAccountID = nil
+        selectedMailID = nil
+        connectedAccountIDs = []
+        failedAccountIDs = []
+        latestOTP = nil
+        latestAnnouncement = ""
+        statusMessage = String(localized: "Not connected")
+        autoCopy = false
+        objectWillChange.send()
+        postConnectionChange()
     }
 
     func copyLatest() {
@@ -575,6 +841,7 @@ final class OTPStore: ObservableObject {
             code: match.code,
             subject: message.subject.isEmpty ? String(localized: "OTP email") : message.subject,
             body: message.body.isEmpty ? message.scanText : message.body,
+            isHTML: message.isHTML,
             receivedAt: receivedAt,
             expiresAt: expiresAt
         )
@@ -583,12 +850,9 @@ final class OTPStore: ObservableObject {
             ([item] + mailItems.filter { !($0.accountId == accountID && $0.uid == message.uid) })
                 .prefix(Self.maxRecentOTPs)
         )
-        persistMailItems()
-
-        if selectedAccountID == accountID || selectedAccountID == nil {
-            selectedAccountID = accountID
-            selectedMailID = item.id
-        }
+        // Prefer the new code when the user opens the window themselves.
+        selectedAccountID = accountID
+        selectedMailID = item.id
 
         let ttl = expiresAt?.timeIntervalSinceNow ?? 90
         cache.store(match.code, ttl: max(ttl, 30))
@@ -725,7 +989,6 @@ final class OTPStore: ObservableObject {
             self.selectedAccountID = accounts.first?.id
         }
         persistAccountsIgnoringErrors()
-        persistMailItems()
         persistSeenUIDs()
     }
 
@@ -734,18 +997,12 @@ final class OTPStore: ObservableObject {
         ProcessInfo.processInfo.environment["XCTestConfigurationFilePath"] != nil
     }
 
-    private func persistMailItems() {
-        if let data = try? JSONEncoder().encode(mailItems) {
-            UserDefaults.standard.set(data, forKey: mailItemsKey)
-        }
-    }
-
-    private func loadMailItems() {
-        guard let data = UserDefaults.standard.data(forKey: mailItemsKey),
-              let decoded = try? JSONDecoder().decode([OTPMailItem].self, from: data) else { return }
-        mailItems = Array(decoded.filter { $0.code.allSatisfy(\.isNumber) }.prefix(Self.maxRecentOTPs))
-        latestOTP = mailItems.first?.code
-        selectedMailID = mailItemsForSelectedAccount.first?.id
+    /// Codes/email bodies stay in memory for this session only — never written to disk.
+    private func clearPersistedMailHistory() {
+        UserDefaults.standard.removeObject(forKey: mailItemsKey)
+        mailItems = []
+        latestOTP = nil
+        selectedMailID = nil
     }
 
     private func persistSeenUIDs() {

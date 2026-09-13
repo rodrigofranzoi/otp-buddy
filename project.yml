@@ -50,6 +50,7 @@ targets:
         product: BuddyLocalization
     settings:
       PRODUCT_BUNDLE_IDENTIFIER: com.buddy.otp
+      PRODUCT_NAME: OTP Buddy
       INFOPLIST_FILE: OTPBuddy/Info.plist
       GENERATE_INFOPLIST_FILE: false
       CODE_SIGN_ENTITLEMENTS: OTPBuddy/OTPBuddy.entitlements

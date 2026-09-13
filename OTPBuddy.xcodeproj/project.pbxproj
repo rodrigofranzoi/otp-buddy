@@ -24,6 +24,8 @@
 		C779E26F24DFAC11854E4598 /* OTPStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FC1AB0A9FBECAD377F9D2A /* OTPStore.swift */; };
 		CDD6686DCE4E537DB6A0AED3 /* OTPCredentialStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310633B24E5D05EEB13802BF /* OTPCredentialStore.swift */; };
 		D36E51DE9E51CA0AAAEDFB0A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D282301380E3CAE7C10189DA /* Assets.xcassets */; };
+		DEDA4C46B0FFC053E0A15037 /* OTPMarketingCaptureRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D2BC2413038FA826F4DB85A /* OTPMarketingCaptureRunner.swift */; };
+		E07C987220B1DA48735BC415 /* OTPHTMLEmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5EFF492ED6DCBC25874E2D /* OTPHTMLEmailView.swift */; };
 		E6AB78E6E4EBCEA9D0E0C94C /* BuddyLocalization in Frameworks */ = {isa = PBXBuildFile; productRef = 3038361F19795ECE81D92E22 /* BuddyLocalization */; };
 		ECAF63467D69133391724EED /* OTPBuddyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC4114BFB502D17FBDEC433 /* OTPBuddyUITests.swift */; };
 		FA844260B4ADA1EDD93857A2 /* BuddyUI in Frameworks */ = {isa = PBXBuildFile; productRef = FF2CF9BDB7FB449CCF4E2B6B /* BuddyUI */; };
@@ -47,11 +49,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0A5EFF492ED6DCBC25874E2D /* OTPHTMLEmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPHTMLEmailView.swift; sourceTree = "<group>"; };
+		1D2BC2413038FA826F4DB85A /* OTPMarketingCaptureRunner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPMarketingCaptureRunner.swift; sourceTree = "<group>"; };
 		2BF0276830410E819025711E /* OTPBuddyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPBuddyApp.swift; sourceTree = "<group>"; };
 		310633B24E5D05EEB13802BF /* OTPCredentialStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPCredentialStore.swift; sourceTree = "<group>"; };
 		482DBC44CEE1B14C9534D316 /* shared-buddy */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "shared-buddy"; path = "Vendor/shared-buddy"; sourceTree = SOURCE_ROOT; };
 		4A4F1EB8AF767A0EA308693F /* OTPNotifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPNotifier.swift; sourceTree = "<group>"; };
 		56B3E898EEA6D4CAB35A969D /* OTPBuddy.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OTPBuddy.entitlements; sourceTree = "<group>"; };
+		69C0D303A68EB88B65408BC7 /* OTPBuddy-Marketing.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "OTPBuddy-Marketing.entitlements"; sourceTree = "<group>"; };
 		74FA1B966F4092B9EF4094F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		76614D9C6AF3856ABE1F2397 /* OTPStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPStoreTests.swift; sourceTree = "<group>"; };
 		80522772AA1522C6D88F69B2 /* OTPBuddyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OTPBuddyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -118,10 +123,13 @@
 				A5D9694EADE27D1E61CAE8EC /* IMAPClient.swift */,
 				74FA1B966F4092B9EF4094F6 /* Info.plist */,
 				FD5C184CACD84B20D998DB2A /* OTPAccountEditorSheet.swift */,
+				69C0D303A68EB88B65408BC7 /* OTPBuddy-Marketing.entitlements */,
 				56B3E898EEA6D4CAB35A969D /* OTPBuddy.entitlements */,
 				2BF0276830410E819025711E /* OTPBuddyApp.swift */,
 				310633B24E5D05EEB13802BF /* OTPCredentialStore.swift */,
 				A72B02457F02364814F88E16 /* OTPDashboardView.swift */,
+				0A5EFF492ED6DCBC25874E2D /* OTPHTMLEmailView.swift */,
+				1D2BC2413038FA826F4DB85A /* OTPMarketingCaptureRunner.swift */,
 				4A4F1EB8AF767A0EA308693F /* OTPNotifier.swift */,
 				C54CEC37CD33C5C0AE496F74 /* OTPSettingsView.swift */,
 				B7FC1AB0A9FBECAD377F9D2A /* OTPStore.swift */,
@@ -330,6 +338,8 @@
 				3EE43AB5A745EB3B6B5C92C5 /* OTPBuddyApp.swift in Sources */,
 				CDD6686DCE4E537DB6A0AED3 /* OTPCredentialStore.swift in Sources */,
 				C190520845E2930963728D02 /* OTPDashboardView.swift in Sources */,
+				E07C987220B1DA48735BC415 /* OTPHTMLEmailView.swift in Sources */,
+				DEDA4C46B0FFC053E0A15037 /* OTPMarketingCaptureRunner.swift in Sources */,
 				8230346A85C11F1867285D7B /* OTPNotifier.swift in Sources */,
 				C70B45BA0495AA117C7F60A0 /* OTPSettingsView.swift in Sources */,
 				C779E26F24DFAC11854E4598 /* OTPStore.swift in Sources */,
@@ -357,18 +367,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = OTPBuddy/OTPBuddy.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				COMBINE_HIDPI_IMAGES = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_TESTABILITY = YES;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = OTPBuddy/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks";
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-ObjC",
-				);
+				OTHER_LDFLAGS = "$(inherited) -ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.buddy.otp;
+				PRODUCT_NAME = "OTP Buddy";
 				SDKROOT = macosx;
 			};
 			name = Debug;
@@ -412,18 +419,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = OTPBuddy/OTPBuddy.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				COMBINE_HIDPI_IMAGES = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_TESTABILITY = YES;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = OTPBuddy/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks";
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-ObjC",
-				);
+				OTHER_LDFLAGS = "$(inherited) -ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.buddy.otp;
+				PRODUCT_NAME = "OTP Buddy";
 				SDKROOT = macosx;
 			};
 			name = Release;

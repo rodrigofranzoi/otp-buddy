@@ -7952,6 +7952,148 @@
         }
       },
       "extractionState": "manual"
+    },
+    "New verification emails for this account will show up here. Codes aren’t stored on disk — they clear when you quit OTP Buddy.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "New verification emails for this account will show up here. Codes aren’t stored on disk — they clear when you quit OTP Buddy."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Neue Bestätigungs-E-Mails für dieses Konto erscheinen hier. Codes werden nicht auf der Festplatte gespeichert — sie verschwinden, wenn du OTP Buddy beendest."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nieuwe verificatie-e-mails voor dit account verschijnen hier. Codes worden niet op schijf opgeslagen — ze verdwijnen wanneer je OTP Buddy afsluit."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Novos e-mails de verificação desta conta aparecem aqui. Os códigos não são guardados em disco — desaparecem quando sais do OTP Buddy."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Los nuevos correos de verificación de esta cuenta aparecerán aquí. Los códigos no se guardan en disco: se borran al salir de OTP Buddy."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Les nouveaux e-mails de vérification de ce compte apparaîtront ici. Les codes ne sont pas enregistrés sur le disque — ils disparaissent lorsque vous quittez OTP Buddy."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le nuove email di verifica di questo account appariranno qui. I codici non vengono salvati su disco: scompaiono quando chiudi OTP Buddy."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ستظهر رسائل التحقق الجديدة لهذا الحساب هنا. لا تُخزَّن الرموز على القرص — تُمسح عند إغلاق OTP Buddy."
+          }
+        },
+        "zh": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "此账户的新验证邮件会显示在这里。验证码不会写入磁盘——退出 OTP Buddy 后即清除。"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Новые письма с кодами для этого аккаунта появятся здесь. Коды не сохраняются на диск — они исчезают при выходе из OTP Buddy."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "このアカウントの新しい確認メールはここに表示されます。コードはディスクに保存されず、OTP Buddy を終了すると消えます。"
+          }
+        }
+      },
+      "extractionState": "manual"
+    },
+    "Waiting for OTP emails… Codes aren’t saved when you quit.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Waiting for OTP emails… Codes aren’t saved when you quit."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Warte auf OTP-E-Mails… Codes werden beim Beenden nicht gespeichert."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wachten op OTP-e-mails… Codes worden niet bewaard bij afsluiten."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A aguardar e-mails OTP… Os códigos não são guardados ao sair."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esperando correos OTP… Los códigos no se guardan al salir."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En attente d’e-mails OTP… Les codes ne sont pas enregistrés à la fermeture."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "In attesa di email OTP… I codici non vengono salvati alla chiusura."
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "في انتظار رسائل OTP… لا تُحفظ الرموز عند الإغلاق."
+          }
+        },
+        "zh": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "正在等待 OTP 邮件…退出后不会保存验证码。"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ожидание OTP-писем… Коды не сохраняются при выходе."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "OTP メールを待機中…終了時にコードは保存されません。"
+          }
+        }
+      },
+      "extractionState": "manual"
     }
   },
   "version": "1.0"

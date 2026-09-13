@@ -90,9 +90,24 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             }
         }
 
-        BuddyMainWindow.presentFirstLaunchExperienceIfNeeded(
-            appDisplayName: BuddyBrand.otpBuddy.displayName
-        )
+        if BuddyMarketingCapture.isEnabled {
+            NSApp.setActivationPolicy(.regular)
+            OTPMarketingCaptureRunner.startIfNeeded(
+                store: store,
+                pause: pause,
+                showPopover: { [weak self] in self?.showPopoverForCapture() }
+            )
+        } else {
+            BuddyMainWindow.presentFirstLaunchExperienceIfNeeded(
+                appDisplayName: BuddyBrand.otpBuddy.displayName
+            )
+        }
+    }
+
+    @discardableResult
+    private func showPopoverForCapture() -> NSWindow? {
+        showPopover()
+        return popover?.contentViewController?.view.window
     }
 
     func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
@@ -111,6 +126,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         guard let button = statusItem?.button, let popover else { return }
         popover.show(relativeTo: button.bounds, of: button, preferredEdge: .minY)
         NSApp.activate(ignoringOtherApps: true)
+        popover.contentViewController?.view.window?.makeKey()
     }
 
     private func updateStatusIcon() {

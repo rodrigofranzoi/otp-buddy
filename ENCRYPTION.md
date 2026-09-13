@@ -10,7 +10,7 @@ Use this when filling **App Privacy**, **Export Compliance**, and review notes i
 | Clipboard favorites | JSON in UserDefaults | On device |
 | Screenshot gallery (images + notes) | JSON in UserDefaults | On device |
 | IMAP accounts + app passwords (OTP Buddy) | macOS Keychain (app-sandbox scoped) | Keychain |
-| OTP codes | Not written to disk | Memory only, short TTL |
+| OTP codes / email bodies (OTP Buddy) | Not written to disk | Memory only for the current session |
 
 **Preferences** (retention days, analytics, auto-copy) also live in UserDefaults — no secrets.
 
@@ -18,6 +18,7 @@ Use this when filling **App Privacy**, **Export Compliance**, and review notes i
 
 Clipboard / screenshot payloads are **not** encrypted at rest (plain JSON in UserDefaults).
 IMAP account lists and app passwords are **Keychain-only** (legacy UserDefaults / Application Support copies are migrated once and deleted).
+OTP codes and email bodies are kept in memory only and disappear when the app quits.
 
 ---
 

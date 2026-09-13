@@ -55,4 +55,51 @@ final class OTPStoreTests: XCTestCase {
         store.moveAccounts(from: IndexSet(integer: 0), to: 2)
         XCTAssertEqual(store.accounts.map(\.id), [b.id, a.id])
     }
+
+    func testMIMEExtractorPrefersHTMLFromFlyingBlueStyleMultipart() {
+        let raw = """
+        This is a multi-part message in MIME format.
+        --7Vx82cHPUxfZ=_?:
+        Content-Type: text/plain; charset="utf-8"
+        Content-Transfer-Encoding: 8bit
+
+        %%=v(PASSWORD)=%% is your PIN code
+        body { width: 100% !important; color: #051039; }
+        --7Vx82cHPUxfZ=_?:
+        Content-Type: text/html; charset="utf-8"
+        Content-Transfer-Encoding: 8bit
+
+        <table><tr><td>IMPORTANT</td></tr></table>
+        <div>PIN code: 900752</div>
+        --7Vx82cHPUxfZ=_?:--
+        ) A78 OK Success [THROTTLED]
+        """
+        let parts = MIMEPartExtractor.extract(from: raw)
+        XCTAssertNotNil(parts.html)
+        XCTAssertTrue(parts.html?.contains("900752") == true)
+        XCTAssertFalse(parts.html?.contains("THROTTLED") == true)
+        XCTAssertFalse(parts.html?.contains("width: 100%") == true)
+
+        let stripped = MIMEPartExtractor.stripTags(parts.html ?? "")
+        XCTAssertTrue(stripped.contains("900752"))
+        XCTAssertFalse(stripped.contains("{"))
+    }
+
+    func testMIMEExtractorInfersBoundaryWithoutHeader() {
+        let raw = """
+        preamble
+        --abc123Boundary
+        Content-Type: text/plain
+
+        hello plain
+        --abc123Boundary
+        Content-Type: text/html
+
+        <div>hello html 424242</div>
+        --abc123Boundary--
+        """
+        let parts = MIMEPartExtractor.extract(from: raw)
+        XCTAssertEqual(parts.plain?.trimmingCharacters(in: .whitespacesAndNewlines), "hello plain")
+        XCTAssertTrue(parts.html?.contains("424242") == true)
+    }
 }

@@ -102,7 +102,7 @@ struct OTPDashboardView: View {
             ForEach(store.accounts) { account in
                 HStack(spacing: 8) {
                     Circle()
-                        .fill(store.connectedAccountIDs.contains(account.id) ? Color.green : Color.gray.opacity(0.45))
+                        .fill(store.accountStatusColor(for: account.id))
                         .frame(width: 8, height: 8)
                     VStack(alignment: .leading, spacing: 2) {
                         Text(account.displayName)
@@ -160,7 +160,7 @@ struct OTPDashboardView: View {
                         .foregroundStyle(.secondary)
                     Text(String(localized: "No codes yet"))
                         .font(.headline)
-                    Text(String(localized: "New verification emails for this account will show up here."))
+                    Text(String(localized: "New verification emails for this account will show up here. Codes aren’t stored on disk — they clear when you quit OTP Buddy."))
                         .font(.callout)
                         .foregroundStyle(.secondary)
                         .multilineTextAlignment(.center)
@@ -187,36 +187,51 @@ struct OTPDashboardView: View {
     private var emailBodyColumn: some View {
         Group {
             if let mail = store.selectedMail {
-                ScrollView {
-                    VStack(alignment: .leading, spacing: 16) {
-                        HStack(alignment: .firstTextBaseline) {
-                            VStack(alignment: .leading, spacing: 4) {
-                                Text(mail.subject)
-                                    .font(.title3.weight(.semibold))
-                                Text(mail.receivedAt.formatted(date: .abbreviated, time: .shortened))
-                                    .font(.caption)
-                                    .foregroundStyle(.secondary)
-                            }
-                            Spacer()
-                            Button(String(localized: "Copy")) {
-                                store.copyCode(mail.code)
-                            }
-                            .disabled(mail.isExpired)
+                VStack(alignment: .leading, spacing: 0) {
+                    HStack(alignment: .firstTextBaseline) {
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text(mail.subject)
+                                .font(.title3.weight(.semibold))
+                            Text(mail.receivedAt.formatted(date: .abbreviated, time: .shortened))
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
                         }
-
-                        Text(mail.code)
-                            .font(.system(size: 34, weight: .bold, design: .rounded))
-                            .monospacedDigit()
-                            .strikethrough(mail.isExpired)
-
-                        Divider()
-
-                        Text(displayBody(mail.body))
-                            .font(.body)
-                            .textSelection(.enabled)
-                            .frame(maxWidth: .infinity, alignment: .leading)
+                        Spacer()
+                        Button {
+                            store.copyCode(mail.code)
+                        } label: {
+                            Image(systemName: "doc.on.doc")
+                        }
+                        .buttonStyle(.borderless)
+                        .help(String(localized: "Copy"))
+                        .accessibilityLabel(String(localized: "Copy"))
+                        .disabled(mail.isExpired)
                     }
-                    .padding(20)
+                    .padding(.horizontal, 20)
+                    .padding(.top, 20)
+                    .padding(.bottom, 12)
+
+                    Text(mail.code)
+                        .font(.system(size: 34, weight: .bold, design: .rounded))
+                        .monospacedDigit()
+                        .strikethrough(mail.isExpired)
+                        .padding(.horizontal, 20)
+                        .padding(.bottom, 12)
+
+                    Divider()
+
+                    if mail.isHTML {
+                        OTPHTMLEmailView(html: mail.body)
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    } else {
+                        ScrollView {
+                            Text(mail.body)
+                                .font(.body)
+                                .textSelection(.enabled)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .padding(20)
+                        }
+                    }
                 }
             } else {
                 VStack(spacing: 10) {
@@ -236,56 +251,60 @@ struct OTPDashboardView: View {
         }
         .navigationTitle(String(localized: "Email"))
     }
-
-    private func displayBody(_ raw: String) -> String {
-        // Prefer readable plain text; collapse huge HTML blobs to a short note.
-        let trimmed = raw.trimmingCharacters(in: .whitespacesAndNewlines)
-        if trimmed.localizedCaseInsensitiveContains("<!DOCTYPE") || trimmed.localizedCaseInsensitiveContains("<html") {
-            if let plainStart = trimmed.range(of: "Your PIN code:")
-                ?? trimmed.range(of: "verification code", options: .caseInsensitive) {
-                return String(trimmed[plainStart.lowerBound...].prefix(1200))
-            }
-            return String(localized: "This message is HTML-only. The code is shown above.")
-        }
-        return trimmed
-    }
 }
 
 struct OTPMailRow: View {
     let item: OTPMailItem
+    var shortcutHint: String? = nil
     let onCopy: () -> Void
 
     var body: some View {
-        TimelineView(.periodic(from: .now, by: 1)) { context in
-            let remaining = item.secondsRemaining(at: context.date)
-            let hasLifetime = item.expiresAt != nil
-            let expired = hasLifetime && (item.isExpired || (remaining ?? 0) <= 0)
-
-            HStack(spacing: 10) {
-                VStack(alignment: .leading, spacing: 2) {
+        HStack(spacing: 10) {
+            VStack(alignment: .leading, spacing: 2) {
+                // Code + countdown can tick; received time stays outside TimelineView so it
+                // paints on the first frame (avoids “code only, time later”).
+                TimelineView(.periodic(from: .now, by: 1)) { context in
+                    let remaining = item.secondsRemaining(at: context.date)
+                    let expired = item.expiresAt != nil && (item.isExpired || (remaining ?? 0) <= 0)
                     Text(item.code)
                         .font(.system(.title3, design: .rounded).weight(.bold))
                         .monospacedDigit()
                         .strikethrough(expired)
                         .foregroundStyle(expired ? .secondary : .primary)
+                }
 
-                    Text(item.receivedAt.formatted(date: .omitted, time: .shortened))
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
+                Text(item.receivedAt.formatted(date: .omitted, time: .shortened))
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
 
-                    if hasLifetime {
+                if item.expiresAt != nil {
+                    TimelineView(.periodic(from: .now, by: 1)) { context in
+                        let remaining = item.secondsRemaining(at: context.date)
+                        let expired = item.isExpired || (remaining ?? 0) <= 0
                         Text(statusText(expired: expired, remaining: remaining))
                             .font(.caption2)
                             .foregroundStyle(expired ? .red.opacity(0.9) : .secondary)
                     }
                 }
-                Spacer(minLength: 0)
-                Button(String(localized: "Copy"), action: onCopy)
-                    .controlSize(.small)
-                    .disabled(expired)
             }
-            .padding(.vertical, 2)
+            Spacer(minLength: 0)
+            if let shortcutHint {
+                Text(shortcutHint)
+                    .font(.caption.monospaced())
+                    .foregroundStyle(.tertiary)
+                    .accessibilityHidden(true)
+            }
+            Button(action: onCopy) {
+                Image(systemName: "doc.on.doc")
+                    .foregroundStyle(BuddyTheme.BuddyColor.textSecondary)
+            }
+            .buttonStyle(.borderless)
+            .controlSize(.small)
+            .disabled(item.isExpired)
+            .help(shortcutHint.map { String(localized: "Copy (\($0))") } ?? String(localized: "Copy"))
+            .accessibilityLabel(String(localized: "Copy"))
         }
+        .padding(.vertical, 2)
     }
 
     private func statusText(expired: Bool, remaining: TimeInterval?) -> String {

@@ -56,7 +56,7 @@ Optionally auto-copy codes to the clipboard, or confirm with one click. Credenti
 ## German (`de`)
 
 **Name:** OTP Buddy  
-**Subtitle:** E-Mail-Codes in die Zwischenablage  
+**Subtitle:** E-Mail-Codes zum Kopieren  
 **Keywords:** OTP,2FA,E-Mail,Verifizierung,IMAP,Zwischenablage,Menüleiste  
 **Promotional Text:** OTP-Codes aus dem Posteingang in die Menüleiste — optionaler Ein-Klick-Copy, Zugangsdaten im Schlüsselbund.
 
